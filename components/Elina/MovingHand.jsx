@@ -1,0 +1,1 @@
+// Displays the hand toy and controls its start/stop movement.

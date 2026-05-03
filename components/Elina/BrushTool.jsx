@@ -1,0 +1,1 @@
+// Displays the brush tool and controls its start/stop movement.

@@ -1,0 +1,1 @@
+// Handles the rename pop-up and displays the updated cat name text.
