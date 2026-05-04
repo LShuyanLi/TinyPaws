@@ -8,7 +8,6 @@ import CatDisplay from "@/components/shared/CatDisplay";
 import FoodBowl from "@/components/Jinwon/FoodBowl";
 import WaterBottle from "@/components/Jinwon/WaterBottle";
 import CatEmotion from "@/components/Jessica/CatEmotion";
-import PlayBall from "@/components/Jonah/PlayBall";
 
 export default function PlayScreen() {
   const [selectedBed, setSelectedBed] = useState(null);
@@ -69,12 +68,7 @@ export default function PlayScreen() {
       >
         <CatEmotion />
         <FoodBowl />
-        <div style={{ position: "absolute", inset: 0, zIndex: 10 }}>
-          <CatDisplay selectedBed={selectedBed}/>
-        </div>
-        <div style={{ position: "absolute", inset: 0, zIndex: 11 }}>
-          <PlayBall ballSpeed={ballSpeed}/>
-        </div>
+        <CatDisplay selectedBed={selectedBed}/>
         <WaterBottle />
       </div>
 

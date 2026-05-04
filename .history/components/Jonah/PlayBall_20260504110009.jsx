@@ -1,10 +1,11 @@
-"use client"
 // Displays the toy ball and controls its left-to-right movement, 2speed（slow，fast）, and stop action.
 import { useState, useEffect } from "react";
 
 export default function PlayBall({ ballSpeed }) {
   const [position, setPosition] = useState(300);
   const [direction, setDirection] = useState(1);
+
+  console.log(ballSpeed);
 
 useEffect(() => {
   let interval;
@@ -18,14 +19,8 @@ useEffect(() => {
       setPosition(prev => {
         let next = prev + speed * direction;
 
-        if (next >= 900 - 60) {
-            setDirection(-1);
-            return prev; // stop at edge
-        }
-
-        if (next <= 300) {
-            setDirection(1);
-            return prev; // stop at edge
+        if (next <= 300 || next >= 800 - 60) {
+            setDirection(d => -d);
         }
 
         return next;
@@ -40,16 +35,12 @@ useEffect(() => {
     <div
       style={{
         position: "absolute",
-        bottom: "-4px",
+        bottom: "20px",
         left: position,
         transition: "none",
       }}
     >
-      <img 
-        src="/ball.svg" 
-        style={{ 
-            width: "60px" ,
-        }} />
+      <img src="/ball.svg" style={{ width: "50px" }} />
     </div>
   );
 }

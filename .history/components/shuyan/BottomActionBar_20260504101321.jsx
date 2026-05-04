@@ -7,9 +7,7 @@ import { useState } from "react";
 export default function BottomActionBar( {
   activeButton,
   setActiveButton,
-  setSelectedBed, //these three are for the bed feature
-  ballSpeed,
-  setBallSpeed, //these two are for the play ball feature
+  setSelectedBed //these three are for the bed feature
 }) {
   return (
     <div

@@ -7,9 +7,7 @@ import { useState } from "react";
 export default function BottomActionBar( {
   activeButton,
   setActiveButton,
-  setSelectedBed, //these three are for the bed feature
-  ballSpeed,
-  setBallSpeed, //these two are for the play ball feature
+  setSelectedBed //these three are for the bed feature
 }) {
   return (
     <div
@@ -101,13 +99,6 @@ export default function BottomActionBar( {
             {/* ball option - Jonah can add onClick here */}
             <img
               src="/ball.svg"
-                onClick={() => {
-                setBallSpeed(prev =>
-                  prev === "stop" ? "slow" :
-                  prev === "slow" ? "fast" :
-                  "stop"
-              );
-              }}
               style={{
                 position: "absolute",
                 top: "8%",
@@ -116,7 +107,6 @@ export default function BottomActionBar( {
                 width: "42%",
                 height: "auto",
                 cursor: "pointer",
-                opacity: ballSpeed === "stop" ? 0.5 : 1
               }}
             />
 

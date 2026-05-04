@@ -72,7 +72,7 @@ export default function PlayScreen() {
         <div style={{ position: "absolute", inset: 0, zIndex: 10 }}>
           <CatDisplay selectedBed={selectedBed}/>
         </div>
-        <div style={{ position: "absolute", inset: 0, zIndex: 11 }}>
+        <div style={{ position: "absolute", inset: 0, zIndex: 20 }}>
           <PlayBall ballSpeed={ballSpeed}/>
         </div>
         <WaterBottle />

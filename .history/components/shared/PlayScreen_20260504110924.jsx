@@ -69,13 +69,10 @@ export default function PlayScreen() {
       >
         <CatEmotion />
         <FoodBowl />
-        <div style={{ position: "absolute", inset: 0, zIndex: 10 }}>
-          <CatDisplay selectedBed={selectedBed}/>
-        </div>
-        <div style={{ position: "absolute", inset: 0, zIndex: 11 }}>
-          <PlayBall ballSpeed={ballSpeed}/>
-        </div>
+        <PlayBall ballSpeed={ballSpeed}/>
+        <CatDisplay selectedBed={selectedBed}/>
         <WaterBottle />
+        
       </div>
 
       <BottomActionBar 
