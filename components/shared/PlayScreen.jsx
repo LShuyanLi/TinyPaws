@@ -1,13 +1,32 @@
+"use client";
+
 // PlayScreen.jsx: Builds the main cat play screen with the background, cat area, feeding area, tools, bed, and bottom buttons.
+
+import { useState } from "react";
 
 import BackButton from "@/components/shuyan/BackButton";
 import BottomActionBar from "@/components/shuyan/BottomActionBar";
 import CatDisplay from "@/components/shared/CatDisplay";
 import FoodBowl from "@/components/Jinwon/FoodBowl";
 import WaterBottle from "@/components/Jinwon/WaterBottle";
+import FeedSystem from "@/components/Jinwon/FeedSystem";
 import CatEmotion from "@/components/Jessica/CatEmotion";
 
 export default function PlayScreen() {
+  const [feedState, setFeedState] = useState({
+    bowlType: null,
+    hasWater: false,
+  });
+
+  const handleFeedSelect = (type) => {
+    if (type === "water") {
+      setFeedState((prev) => ({ ...prev, hasWater: true }));
+      return;
+    }
+
+    setFeedState((prev) => ({ ...prev, bowlType: type }));
+  };
+
   return (
     <section
       style={{
@@ -62,12 +81,13 @@ export default function PlayScreen() {
         }}
       >
         <CatEmotion />
-        <FoodBowl />
+        <FoodBowl bowlType={feedState.bowlType} />
         <CatDisplay />
-        <WaterBottle />
+        <WaterBottle hasWater={feedState.hasWater} />
       </div>
 
       <BottomActionBar />
+      <FeedSystem onSelect={handleFeedSelect} />
     </section>
   );
 }

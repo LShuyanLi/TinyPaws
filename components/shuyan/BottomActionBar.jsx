@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function BottomActionBar() {
   const [activeButton, setActiveButton] = useState(null);
+  const [isFeedOpen, setIsFeedOpen] = useState(false);
 
   return (
     <div
@@ -30,18 +31,15 @@ export default function BottomActionBar() {
       </div>
 
       {/* Feed button - Jinwon */}
-      <div
-        onMouseEnter={() => setActiveButton("feed")}
-        onMouseLeave={() => setActiveButton(null)}
-        style={{ position: "relative" }}
-      >
-        {activeButton === "feed" && (
+      <div style={{ position: "relative" }}>
+        {isFeedOpen && (
           <div style={bubbleStyle}>
             <img src="/bubble-3.svg" style={bubbleBackgroundStyle} />
 
             {/* dry food option - Jinwon can add onClick here */}
             <img
               src="/dryfood.svg"
+              onClick={() => setIsFeedOpen(false)}
               style={{
                 position: "absolute",
                 top: "8%",
@@ -56,6 +54,7 @@ export default function BottomActionBar() {
             {/* wet food option - Jinwon can add onClick here */}
             <img
               src="/wetfood.svg"
+              onClick={() => setIsFeedOpen(false)}
               style={{
                 position: "absolute",
                 top: "34%",
@@ -70,6 +69,7 @@ export default function BottomActionBar() {
             {/* water option - Jinwon can add onClick here */}
             <img
               src="/water.svg"
+              onClick={() => setIsFeedOpen(false)}
               style={{
                 position: "absolute",
                 top: "60%",
@@ -83,7 +83,9 @@ export default function BottomActionBar() {
           </div>
         )}
 
-        <button style={buttonStyle}>Fill the Bowl</button>
+        <button style={buttonStyle} onClick={() => setIsFeedOpen((prev) => !prev)}>
+          Fill the Bowl
+        </button>
       </div>
 
       {/* Play button - Jonah handles ball/feather, Elina handles hand */}
