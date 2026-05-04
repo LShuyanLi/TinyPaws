@@ -4,11 +4,9 @@
 
 import { useState } from "react";
 
-export default function BottomActionBar( {
-  activeButton,
-  setActiveButton,
-  setSelectedBed //these three are for the bed feature
-}) {
+export default function BottomActionBar() {
+  const [activeButton, setActiveButton] = useState(null);
+
   return (
     <div
       style={{
@@ -185,7 +183,6 @@ export default function BottomActionBar( {
             {/* yellow bed option - Jonah can add onClick here */}
             <img
               src="/bed-1.svg"
-              onClick={() => setSelectedBed("yellow")}
               style={{
                 position: "absolute",
                 top: "12%",
@@ -200,7 +197,6 @@ export default function BottomActionBar( {
             {/* green bed option - Jonah can add onClick here */}
             <img
               src="/bed-2.png"
-              onClick={() => setSelectedBed("green")}
               style={{
                 position: "absolute",
                 top: "48%",

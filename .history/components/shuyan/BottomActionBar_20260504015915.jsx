@@ -4,11 +4,10 @@
 
 import { useState } from "react";
 
-export default function BottomActionBar( {
-  activeButton,
-  setActiveButton,
-  setSelectedBed //these three are for the bed feature
-}) {
+export default function BottomActionBar() {
+  const [activeButton, setActiveButton] = useState(null);
+  const [selectedBed, setSelectedBed] = useState(null);
+
   return (
     <div
       style={{

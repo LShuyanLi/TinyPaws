@@ -1,6 +1,4 @@
 // PlayScreen.jsx: Builds the main cat play screen with the background, cat area, feeding area, tools, bed, and bottom buttons.
-"use client"
-import { useState } from "react";
 
 import BackButton from "@/components/shuyan/BackButton";
 import BottomActionBar from "@/components/shuyan/BottomActionBar";
@@ -10,8 +8,6 @@ import WaterBottle from "@/components/Jinwon/WaterBottle";
 import CatEmotion from "@/components/Jessica/CatEmotion";
 
 export default function PlayScreen() {
-  const [selectedBed, setSelectedBed] = useState(null);
-  const [activeButton, setActiveButton] = useState(null);
   return (
     <section
       style={{
@@ -67,15 +63,11 @@ export default function PlayScreen() {
       >
         <CatEmotion />
         <FoodBowl />
-        <CatDisplay selectedBed={selectedBed}/>
+        <CatDisplay />
         <WaterBottle />
       </div>
 
-      <BottomActionBar 
-        activeButton={activeButton}
-        setActiveButton={setActiveButton}
-        setSelectedBed={setSelectedBed}
-      />
+      <BottomActionBar />
     </section>
   );
 }

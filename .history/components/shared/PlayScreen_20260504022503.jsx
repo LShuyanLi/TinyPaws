@@ -1,5 +1,4 @@
 // PlayScreen.jsx: Builds the main cat play screen with the background, cat area, feeding area, tools, bed, and bottom buttons.
-"use client"
 import { useState } from "react";
 
 import BackButton from "@/components/shuyan/BackButton";
