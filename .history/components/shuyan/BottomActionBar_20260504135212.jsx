@@ -186,9 +186,7 @@ export default function BottomActionBar( {
             <img
               src="/bed-1.svg"
               onClick={() => {
-                setSelectedBed(prev =>
-                  prev === "yellow" ? null : "yellow"
-                );
+                prev === "yellow" ? null : "yellow"
               }}
               style={{
                 position: "absolute",
@@ -205,9 +203,7 @@ export default function BottomActionBar( {
             <img
               src="/bed-2.png"
               onClick={() => {
-                setSelectedBed(prev =>
-                  prev === "green" ? null : "green"
-                );
+                prev === "green" ? null : "green"
               }}
               style={{
                 position: "absolute",
