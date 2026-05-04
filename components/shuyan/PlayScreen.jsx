@@ -7,7 +7,7 @@ import FoodBowl from "@/components/Jinwon/FoodBowl";
 import WaterBottle from "@/components/Jinwon/WaterBottle";
 import CatEmotion from "@/components/Jessica/CatEmotion";
 
-export default function PlayScreen({ goToChoose }) {
+export default function PlayScreen({ goToChoose, selectedCat }) {
   return (
     <section
       style={{
@@ -63,7 +63,7 @@ export default function PlayScreen({ goToChoose }) {
       >
         <CatEmotion />
         <FoodBowl />
-        <CatDisplay />
+        <CatDisplay selectedCat={selectedCat}/>
         <WaterBottle />
       </div>
 

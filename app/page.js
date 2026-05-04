@@ -10,11 +10,14 @@ import PlayScreen from "@/components/shuyan/PlayScreen";
 
 export default function Home() {
   const [screen, setScreen] = useState("choose");
+  const [selectedCat, setSelectedCat] = useState(null);
 
   function goToChoose() {
     setScreen("choose");
   }
-function goToPlay() {
+
+  function goToPlay(catImage) {
+    setSelectedCat(catImage);
     setScreen("play");
   }
 
@@ -32,11 +35,13 @@ function goToPlay() {
       <Header />
 
       {screen === "choose" && (
-        <ChooseScreen goToPlay={() => setScreen("play")} />
+        <ChooseScreen goToPlay={goToPlay} />
       )}
 
       {screen === "play" && (
-        <PlayScreen goToChoose={() => setScreen("choose")} />
+        <PlayScreen 
+        goToChoose={goToChoose} 
+        selectedCat={selectedCat} />
       )}
     </main>
   );

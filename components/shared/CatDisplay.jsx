@@ -1,6 +1,6 @@
 // CatDisplay.jsx: Displays the selected cat image on the play screen.
 
-export default function CatDisplay() {
+export default function CatDisplay({ selectedCat }) {
   return (
     <div
       style={{
@@ -12,7 +12,7 @@ export default function CatDisplay() {
       }}
     >
       <img
-        src="/cat-1.svg"
+        src={selectedCat}
         style={{
           width: "18vw",
           minWidth: "180px",
