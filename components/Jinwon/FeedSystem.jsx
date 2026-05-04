@@ -5,23 +5,24 @@ import { useEffect } from "react";
 // Controls whether the selected feed option is dry food, wet food, or water.
 
 export default function FeedSystem({ onSelect }) {
+  function selectFeed(type) {
+    if (!onSelect) return;
+    onSelect(type);
+  }
+
   useEffect(() => {
     function onDocumentClick(event) {
-      const target = event.target;
-      if (!(target instanceof HTMLImageElement)) return;
+      const clickedElement = event.target;
+      if (!(clickedElement instanceof HTMLImageElement)) return;
 
-      const src = target.getAttribute("src") || "";
+      const imageSource = clickedElement.getAttribute("src") || "";
 
-      if (src.includes("/dryfood.svg")) {
-        if (onSelect) onSelect("dry");
-      }
-
-      if (src.includes("/wetfood.svg")) {
-        if (onSelect) onSelect("wet");
-      }
-
-      if (src.includes("/water.svg")) {
-        if (onSelect) onSelect("water");
+      if (imageSource.includes("/dryfood.svg")) {
+        selectFeed("dry");
+      } else if (imageSource.includes("/wetfood.svg")) {
+        selectFeed("wet");
+      } else if (imageSource.includes("/water.svg")) {
+        selectFeed("water");
       }
     }
 
