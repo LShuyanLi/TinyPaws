@@ -16,10 +16,10 @@ export default function CatDisplay({ selectedBed }) {
           src="/yellow-bed.svg"
           style={{
             position: "absolute",
-            bottom: "-130px",
+            bottom: "-90px",
             left: "50%",
             transform: "translateX(-50%)",
-            width: "30vw",
+            width: "20vw",
             minWidth: "200px",
             zIndex: 0,
           }}
@@ -31,7 +31,7 @@ export default function CatDisplay({ selectedBed }) {
           src="/green-bed.svg"
           style={{
             position: "absolute",
-            bottom: "-130px",
+            bottom: "-90px",
             left: "50%",
             transform: "translateX(-50%)",
             width: "30vw",
