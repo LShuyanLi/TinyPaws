@@ -6,23 +6,24 @@ import { useEffect } from "react";
 
 export default function FeedSystem({ onSelect }) {
   function selectFeed(type) {
-    if (!onSelect) return;
-    onSelect(type);
+    if (onSelect) {
+      onSelect(type);
+    }
   }
 
   useEffect(() => {
     function onDocumentClick(event) {
       const clickedElement = event.target;
-      if (!(clickedElement instanceof HTMLImageElement)) return;
+      if (clickedElement.tagName === "IMG") {
+        const imageSource = clickedElement.getAttribute("src") || "";
 
-      const imageSource = clickedElement.getAttribute("src") || "";
-
-      if (imageSource.includes("/dryfood.svg")) {
-        selectFeed("dry");
-      } else if (imageSource.includes("/wetfood.svg")) {
-        selectFeed("wet");
-      } else if (imageSource.includes("/water.svg")) {
-        selectFeed("water");
+        if (imageSource.includes("/dryfood.svg")) {
+          selectFeed("dry");
+        } else if (imageSource.includes("/wetfood.svg")) {
+          selectFeed("wet");
+        } else if (imageSource.includes("/water.svg")) {
+          selectFeed("water");
+        }
       }
     }
 
