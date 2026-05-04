@@ -31,8 +31,7 @@ export default function BottomActionBar() {
 
       {/* Feed button - Jinwon */}
       <div
-        onMouseEnter={() => setActiveButton("feed")}
-        onMouseLeave={() => setActiveButton(null)}
+        onClick={() => setActiveButton(activeButton === "feed" ? null : "feed")}
         style={{ position: "relative" }}
       >
         {activeButton === "feed" && (
@@ -88,8 +87,7 @@ export default function BottomActionBar() {
 
       {/* Play button - Jonah handles ball/feather, Elina handles hand */}
       <div
-        onMouseEnter={() => setActiveButton("play")}
-        onMouseLeave={() => setActiveButton(null)}
+        onClick={()=> setActiveButton(activeButton === "play"? null : "play")}
         style={{ position: "relative" }}
       >
         {activeButton === "play" && (
@@ -145,8 +143,7 @@ export default function BottomActionBar() {
 
       {/* Brush button - Elina */}
       <div
-        onMouseEnter={() => setActiveButton("brush")}
-        onMouseLeave={() => setActiveButton(null)}
+        onClick={()=> setActiveButton(activeButton === "brush"? null : "brush")}
         style={{ position: "relative" }}
       >
         {activeButton === "brush" && (
@@ -174,8 +171,7 @@ export default function BottomActionBar() {
 
       {/* Bed button - Jonah */}
       <div
-        onMouseEnter={() => setActiveButton("bed")}
-        onMouseLeave={() => setActiveButton(null)}
+        onClick={()=> setActiveButton(activeButton === "bed"? null : "bed")}
         style={{ position: "relative" }}
       >
         {activeButton === "bed" && (

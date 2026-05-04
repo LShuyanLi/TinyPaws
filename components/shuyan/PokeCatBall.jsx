@@ -1,16 +1,18 @@
 // Displays one selectable pokeCAT ball and shows its cat preview on hover.
-export default function PokeCatBall({ image }) {
+export default function PokeCatBall({ image, goToPlay }) {
   return (
     <div
-      style={{
-        width: "24vw",
-        maxWidth: "380px",
-        minWidth: "230px",
-        height: "48vh",
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "center",
-      }}
+        onClick={goToPlay}
+        style={{
+            width: "24vw",
+            maxWidth: "380px",
+            minWidth: "230px",
+            height: "48vh",
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "center",
+            cursor: "pointer"
+        }}
     >
       <img
         src={image}

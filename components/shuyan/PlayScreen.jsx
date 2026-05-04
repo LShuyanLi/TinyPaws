@@ -7,7 +7,7 @@ import FoodBowl from "@/components/Jinwon/FoodBowl";
 import WaterBottle from "@/components/Jinwon/WaterBottle";
 import CatEmotion from "@/components/Jessica/CatEmotion";
 
-export default function PlayScreen() {
+export default function PlayScreen({ goToChoose }) {
   return (
     <section
       style={{
@@ -18,7 +18,7 @@ export default function PlayScreen() {
         overflow: "hidden",
       }}
     >
-      <BackButton />
+      <BackButton goToChoose={goToChoose}/>
 
       <h1
         style={{

@@ -15,7 +15,7 @@ export default function Header() {
       }}
     >
       <img
-        src="/images/logo.svg"
+        src="/Logo.svg"
         alt="TinyPaws logo"
         style={{
           width: "18vw",
@@ -48,9 +48,17 @@ export default function Header() {
           gap: "0.7rem",
         }}
       >
-        <button style={iconButtonStyle}>🛒</button>
-        <button style={iconButtonStyle}>🔔</button>
-        <button style={iconButtonStyle}>👤</button>
+        <button style={iconButtonStyle}>
+         <img src="/chart.svg" style={iconImageStyle} />
+        </button>
+
+        <button style={iconButtonStyle}>
+          <img src="/bell.svg" style={iconImageStyle} />
+        </button>
+
+        <button style={iconButtonStyle}>
+         <img src="/user.svg" style={iconImageStyle} />
+        </button>
       </div>
     </header>
   );
@@ -67,4 +75,11 @@ const iconButtonStyle = {
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
+};
+
+const iconImageStyle = {
+  width: "1.1rem",
+  height: "1.1rem",
+  objectFit: "contain",
+  display: "block",
 };
