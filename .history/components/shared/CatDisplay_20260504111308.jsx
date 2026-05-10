@@ -13,43 +13,41 @@ export default function CatDisplay({ selectedBed }) {
     >
       {selectedBed === "yellow" && (
         <img
-          src="/yellow-bed.svg"
+          src="/bed-1.svg"
           style={{
             position: "absolute",
-            bottom: "-130px",
+            bottom: "-10px",
             left: "50%",
             transform: "translateX(-50%)",
-            width: "30vw",
+            width: "20vw",
             minWidth: "200px",
-            zIndex: 0,
+            zIndex: 5,
           }}
         />
       )}
 
       {selectedBed === "green" && (
         <img
-          src="/green-bed.svg"
+          src="/bed-2.png"
           style={{
             position: "absolute",
-            bottom: "-130px",
+            bottom: "-10px",
             left: "50%",
             transform: "translateX(-50%)",
-            width: "30vw",
+            width: "20vw",
             minWidth: "200px",
-            zIndex: 0,
+            zIndex: 5,
           }}
         />
       )}
       <img
         src="/cat-1.svg"
         style={{
-          position: "relative",
           width: "18vw",
           minWidth: "180px",
           maxWidth: "280px",
           height: "auto",
           display: "block",
-          zIndex: 5,
         }}
       />
     </div>
