@@ -40,7 +40,7 @@ useEffect(() => {
     <div
       style={{
         position: "absolute",
-        bottom: "-4px",
+        bottom: "20px",
         left: position,
         transition: "none",
       }}
@@ -49,6 +49,7 @@ useEffect(() => {
         src="/ball.svg" 
         style={{ 
             width: "60px" ,
+            zIndex: 100
         }} />
     </div>
   );

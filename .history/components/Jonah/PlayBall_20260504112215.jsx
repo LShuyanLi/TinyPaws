@@ -40,7 +40,7 @@ useEffect(() => {
     <div
       style={{
         position: "absolute",
-        bottom: "-4px",
+        bottom: "-2px",
         left: position,
         transition: "none",
       }}

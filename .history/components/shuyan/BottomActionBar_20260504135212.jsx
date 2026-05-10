@@ -7,11 +7,7 @@ import { useState } from "react";
 export default function BottomActionBar( {
   activeButton,
   setActiveButton,
-  setSelectedBed, //these three are for the bed feature
-  ballSpeed,
-  setBallSpeed, //these two are for the play ball feature
-  featherActive,
-  setFeatherActive,
+  setSelectedBed //these three are for the bed feature
 }) {
   return (
     <div
@@ -94,6 +90,8 @@ export default function BottomActionBar( {
 
       {/* Play button - Jonah handles ball/feather, Elina handles hand */}
       <div
+        onMouseEnter={() => setActiveButton("play")}
+        onMouseLeave={() => setActiveButton(null)}
         style={{ position: "relative" }}
       >
         {activeButton === "play" && (
@@ -103,13 +101,6 @@ export default function BottomActionBar( {
             {/* ball option - Jonah can add onClick here */}
             <img
               src="/ball.svg"
-                onClick={() => {
-                setBallSpeed(prev =>
-                  prev === "stop" ? "slow" :
-                  prev === "slow" ? "fast" :
-                  "stop"
-              );
-              }}
               style={{
                 position: "absolute",
                 top: "8%",
@@ -118,16 +109,12 @@ export default function BottomActionBar( {
                 width: "42%",
                 height: "auto",
                 cursor: "pointer",
-                opacity: ballSpeed === "stop" ? 0.5 : 1
               }}
             />
 
             {/* feather option - Jonah can add onClick here */}
             <img
               src="/feather.svg"
-              onClick={() => 
-                setFeatherActive(prev => !prev)
-              }
               style={{
                 position: "absolute",
                 top: "30%",
@@ -155,12 +142,7 @@ export default function BottomActionBar( {
           </div>
         )}
 
-        <button 
-          style={buttonStyle}
-          onClick={() =>
-            setActiveButton(activeButton === "play" ? null : "play")
-          }
-        >Play Together</button>
+        <button style={buttonStyle}>Play Together</button>
       </div>
 
       {/* Brush button - Elina */}
@@ -204,9 +186,7 @@ export default function BottomActionBar( {
             <img
               src="/bed-1.svg"
               onClick={() => {
-                setSelectedBed(prev =>
-                  prev === "yellow" ? null : "yellow"
-                );
+                prev === "yellow" ? null : "yellow"
               }}
               style={{
                 position: "absolute",
@@ -223,9 +203,7 @@ export default function BottomActionBar( {
             <img
               src="/bed-2.png"
               onClick={() => {
-                setSelectedBed(prev =>
-                  prev === "green" ? null : "green"
-                );
+                prev === "green" ? null : "green"
               }}
               style={{
                 position: "absolute",

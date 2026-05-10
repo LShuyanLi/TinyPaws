@@ -7,11 +7,7 @@ import { useState } from "react";
 export default function BottomActionBar( {
   activeButton,
   setActiveButton,
-  setSelectedBed, //these three are for the bed feature
-  ballSpeed,
-  setBallSpeed, //these two are for the play ball feature
-  featherActive,
-  setFeatherActive,
+  setSelectedBed //these three are for the bed feature
 }) {
   return (
     <div
@@ -125,9 +121,6 @@ export default function BottomActionBar( {
             {/* feather option - Jonah can add onClick here */}
             <img
               src="/feather.svg"
-              onClick={() => 
-                setFeatherActive(prev => !prev)
-              }
               style={{
                 position: "absolute",
                 top: "30%",
@@ -203,11 +196,7 @@ export default function BottomActionBar( {
             {/* yellow bed option - Jonah can add onClick here */}
             <img
               src="/bed-1.svg"
-              onClick={() => {
-                setSelectedBed(prev =>
-                  prev === "yellow" ? null : "yellow"
-                );
-              }}
+              onClick={() => setSelectedBed("yellow")}
               style={{
                 position: "absolute",
                 top: "12%",
@@ -222,11 +211,7 @@ export default function BottomActionBar( {
             {/* green bed option - Jonah can add onClick here */}
             <img
               src="/bed-2.png"
-              onClick={() => {
-                setSelectedBed(prev =>
-                  prev === "green" ? null : "green"
-                );
-              }}
+              onClick={() => setSelectedBed("green")}
               style={{
                 position: "absolute",
                 top: "48%",

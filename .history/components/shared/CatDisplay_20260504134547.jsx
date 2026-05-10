@@ -8,7 +8,7 @@ export default function CatDisplay({ selectedBed }) {
         left: "50%",
         bottom: "0",
         transform: "translateX(-50%)",
-        zIndex: 1,
+        zIndex: 10,
       }}
     >
       {selectedBed === "yellow" && (
