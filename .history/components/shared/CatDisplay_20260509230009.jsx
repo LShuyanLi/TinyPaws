@@ -54,8 +54,8 @@ export default function CatDisplay({
       )}
       <div
         style={{
-          width: "380px",
-          height: "380px",
+          width: "280px",
+          height: "280px",
           position: "relative",
         }}
       >

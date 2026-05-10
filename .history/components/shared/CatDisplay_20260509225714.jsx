@@ -52,23 +52,18 @@ export default function CatDisplay({
           }}
         />
       )}
-      <div
+      <img
+        src={catImage}
         style={{
-          width: "380px",
-          height: "380px",
           position: "relative",
+          width: "18vw",
+          minWidth: "180px",
+          maxWidth: "280px",
+          height: "auto",
+          display: "block",
+          zIndex: 5,
         }}
-      >
-        <img
-          src={catImage}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "contain",
-            display: "block",
-          }}
-        />
-      </div>
+      />
     </div>
   );
 }

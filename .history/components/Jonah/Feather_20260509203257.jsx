@@ -13,19 +13,19 @@ export default function Feather({ featherActive }) {
 			setPosition(prev => {
 				let next = prev + 2 * direction;
 
-				if (next >= 120) {
+				if (next >= 100) {
 					setDirection(-1);
 					return prev;
 				}
 
-				if (next <= -120) {
+				if (next <= -150) {
 					setDirection(1);
 					return prev;
 				}
 
 				return next;
 			});
-		}, 12);
+		}, 16);
 	}
 
 	return () => clearInterval(interval);
@@ -38,8 +38,8 @@ if (!featherActive) return null;
       style={{
         position: "absolute",
         top: "-510px",
-        left: "47%",
-        transform: `translateX(${position}px) rotate(${position / -8}deg)`,
+        left: "50%",
+        transform: `translateX(${position}px)`,
         zIndex: 30,
       }}
     >

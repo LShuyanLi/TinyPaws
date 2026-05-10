@@ -25,7 +25,7 @@ export default function Feather({ featherActive }) {
 
 				return next;
 			});
-		}, 12);
+		}, 16);
 	}
 
 	return () => clearInterval(interval);
@@ -38,8 +38,8 @@ if (!featherActive) return null;
       style={{
         position: "absolute",
         top: "-510px",
-        left: "47%",
-        transform: `translateX(${position}px) rotate(${position / -8}deg)`,
+        left: "48%",
+        transform: `translateX(${position}px)`,
         zIndex: 30,
       }}
     >
