@@ -33,7 +33,7 @@ useEffect(() => {
     });
 
     setRotation(prev => prev + speed * direction);
-
+    
     }, 16);
   }
 
@@ -53,7 +53,6 @@ useEffect(() => {
         src="/ball.svg" 
         style={{ 
             width: "60px" ,
-            transform: `rotate(${rotation}deg)`,
         }} />
     </div>
   );

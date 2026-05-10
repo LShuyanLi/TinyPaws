@@ -104,8 +104,6 @@ export default function BottomActionBar( {
             <img
               src="/ball.svg"
                 onClick={() => {
-                setFeatherActive(false);
-
                 setBallSpeed(prev =>
                   prev === "stop"
                     ? "slow"
@@ -129,10 +127,9 @@ export default function BottomActionBar( {
             {/* feather option - Jonah can add onClick here */}
             <img
               src="/feather.svg"
-              onClick={() => {
-                setBallSpeed("stop");
-                setFeatherActive(prev => !prev);
-              }}
+              onClick={() => 
+                setFeatherActive(prev => !prev)
+              }
               style={{
                 position: "absolute",
                 top: "30%",

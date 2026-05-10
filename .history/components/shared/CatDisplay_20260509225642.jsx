@@ -7,35 +7,10 @@ export default function CatDisplay({
 }) {
   let catImage = "/cat-1.svg";
 
-  let catStyle = {
-    width: "100%",
-    height: "100%",
-    objectFit: "contain",
-    position: "absolute",
-    bottom: "0px",
-    left: "0px",
-  };
-
   if (featherActive) {
-    catImage = "/catreach-1.svg";
-
-    catStyle = {
-      ...catStyle,
-      width: "103%",
-      height: "103%",
-      left: "15px",
-    }
-
+    catImage = "/catreaching-1.svg";
   } else if (ballSpeed !== "stop") {
-    catImage = "/catcrouch-1.svg";
-
-    catStyle = {
-      ...catStyle,
-      width: "118%",
-      height: "118%",
-      left: "-25px",
-    }
-
+    catImage = "/catcrouching-1.svg";
   }
 
   return (
@@ -77,18 +52,18 @@ export default function CatDisplay({
           }}
         />
       )}
-      <div
+      <img
+        src={catImage}
         style={{
-          width: "425px",
-          height: "425px",
           position: "relative",
+          width: "18vw",
+          minWidth: "180px",
+          maxWidth: "280px",
+          height: "auto",
+          display: "block",
+          zIndex: 5,
         }}
-      >
-        <img
-          src={catImage}
-          style={catStyle}
-        />
-      </div>
+      />
     </div>
   );
 }

@@ -85,7 +85,7 @@ export default function CatDisplay({
         }}
       >
         <img
-          src={catImage}
+          src={catImage} 
           style={catStyle}
         />
       </div>

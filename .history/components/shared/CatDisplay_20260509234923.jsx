@@ -31,11 +31,11 @@ export default function CatDisplay({
 
     catStyle = {
       ...catStyle,
-      width: "118%",
-      height: "118%",
-      left: "-25px",
+      width: "103%",
+      height: "103%",
+      left: "15px",
     }
-
+    
   }
 
   return (

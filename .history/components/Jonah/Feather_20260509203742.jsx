@@ -39,7 +39,7 @@ if (!featherActive) return null;
         position: "absolute",
         top: "-510px",
         left: "47%",
-        transform: `translateX(${position}px) rotate(${position / -8}deg)`,
+        transform: `translateX(${position}px)`,
         zIndex: 30,
       }}
     >

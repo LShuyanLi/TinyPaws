@@ -104,8 +104,6 @@ export default function BottomActionBar( {
             <img
               src="/ball.svg"
                 onClick={() => {
-                setFeatherActive(false);
-
                 setBallSpeed(prev =>
                   prev === "stop"
                     ? "slow"

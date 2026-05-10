@@ -28,14 +28,6 @@ export default function CatDisplay({
 
   } else if (ballSpeed !== "stop") {
     catImage = "/catcrouch-1.svg";
-
-    catStyle = {
-      ...catStyle,
-      width: "118%",
-      height: "118%",
-      left: "-25px",
-    }
-
   }
 
   return (

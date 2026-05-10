@@ -14,8 +14,8 @@ import Feather from "@/components/Jonah/Feather";
 export default function PlayScreen() {
   const [selectedBed, setSelectedBed] = useState(null);
   const [activeButton, setActiveButton] = useState(null);
-  const [ballSpeed, setBallSpeed] = useState("stop");
-  const [featherActive, setFeatherActive] = useState(false);
+    const [ballSpeed, setBallSpeed] = useState("stop");
+    const [featherActive, setFeatherActive] = useState(false);
   return (
     <section
       style={{
@@ -72,11 +72,7 @@ export default function PlayScreen() {
         <CatEmotion />
         <FoodBowl />
         <div style={{ position: "absolute", inset: 0, zIndex: 10 }}>
-          <CatDisplay 
-            selectedBed={selectedBed}
-            ballSpeed={ballSpeed}
-            featherActive={featherActive}
-          />
+          <CatDisplay selectedBed={selectedBed}/>
         </div>
         <div style={{ position: "absolute", inset: 0, zIndex: 11 }}>
           <PlayBall ballSpeed={ballSpeed}/>
