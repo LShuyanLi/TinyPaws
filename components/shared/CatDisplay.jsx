@@ -6,7 +6,17 @@ export default function CatDisplay({
   ballSpeed,
   featherActive,
 }) {
+  // Normal selected cat image
   let catImage = selectedCat || "/cat-1.svg";
+
+  // Find which cat the user selected
+  let catNumber = "1";
+
+  if (selectedCat === "/cat-2.svg") {
+    catNumber = "2";
+  } else if (selectedCat === "/cat-3.svg") {
+    catNumber = "3";
+  }
 
   let catStyle = {
     width: "100%",
@@ -17,8 +27,9 @@ export default function CatDisplay({
     left: "0px",
   };
 
+  // Feather action image
   if (featherActive) {
-    catImage = "/catreach-1.svg";
+    catImage = `/catreach-${catNumber}.svg`;
 
     catStyle = {
       ...catStyle,
@@ -26,8 +37,11 @@ export default function CatDisplay({
       height: "103%",
       left: "15px",
     };
-  } else if (ballSpeed !== "stop") {
-    catImage = "/catcrouch-1.svg";
+  }
+
+  // Ball action image
+  else if (ballSpeed !== "stop") {
+    catImage = `/catcrouch-${catNumber}.svg`;
 
     catStyle = {
       ...catStyle,
