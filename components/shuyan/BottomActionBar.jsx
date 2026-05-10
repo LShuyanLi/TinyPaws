@@ -2,14 +2,12 @@
 
 // BottomActionBar.jsx: Displays the bottom interaction buttons and shows each hover bubble.
 
-import { useState } from "react";
-
-export default function BottomActionBar( {
+export default function BottomActionBar({
   activeButton,
   setActiveButton,
-  setSelectedBed, //these three are for the bed feature
+  setSelectedBed,
   ballSpeed,
-  setBallSpeed, //these two are for the play ball feature
+  setBallSpeed,
   featherActive,
   setFeatherActive,
 }) {
@@ -36,11 +34,7 @@ export default function BottomActionBar( {
       </div>
 
       {/* Feed button - Jinwon */}
-      <div
-        onMouseEnter={() => setActiveButton("feed")}
-        onMouseLeave={() => setActiveButton(null)}
-        style={{ position: "relative" }}
-      >
+      <div style={{ position: "relative" }}>
         {activeButton === "feed" && (
           <div style={bubbleStyle}>
             <img src="/bubble-3.svg" style={bubbleBackgroundStyle} />
@@ -89,29 +83,30 @@ export default function BottomActionBar( {
           </div>
         )}
 
-        <button style={buttonStyle}>Fill the Bowl</button>
+        <button
+          style={buttonStyle}
+          onClick={() =>
+            setActiveButton(activeButton === "feed" ? null : "feed")
+          }
+        >
+          Fill the Bowl
+        </button>
       </div>
 
       {/* Play button - Jonah handles ball/feather, Elina handles hand */}
-      <div
-        style={{ position: "relative" }}
-      >
+      <div style={{ position: "relative" }}>
         {activeButton === "play" && (
           <div style={bubbleStyle}>
             <img src="/bubble-3.svg" style={bubbleBackgroundStyle} />
 
-            {/* ball option - Jonah can add onClick here */}
+            {/* ball option - Jonah */}
             <img
               src="/ball.svg"
-                onClick={() => {
+              onClick={() => {
                 setFeatherActive(false);
 
-                setBallSpeed(prev =>
-                  prev === "stop"
-                    ? "slow"
-                    : prev === "slow"
-                    ? "fast"
-                    : "stop"
+                setBallSpeed((prev) =>
+                  prev === "stop" ? "slow" : prev === "slow" ? "fast" : "stop"
                 );
               }}
               style={{
@@ -122,16 +117,16 @@ export default function BottomActionBar( {
                 width: "42%",
                 height: "auto",
                 cursor: "pointer",
-                opacity: ballSpeed === "stop" ? 0.5 : 1
+                opacity: ballSpeed === "stop" ? 0.5 : 1,
               }}
             />
 
-            {/* feather option - Jonah can add onClick here */}
+            {/* feather option - Jonah */}
             <img
               src="/feather.svg"
               onClick={() => {
                 setBallSpeed("stop");
-                setFeatherActive(prev => !prev);
+                setFeatherActive((prev) => !prev);
               }}
               style={{
                 position: "absolute",
@@ -141,6 +136,7 @@ export default function BottomActionBar( {
                 width: "55%",
                 height: "auto",
                 cursor: "pointer",
+                opacity: featherActive ? 1 : 0.7,
               }}
             />
 
@@ -160,20 +156,18 @@ export default function BottomActionBar( {
           </div>
         )}
 
-        <button 
+        <button
           style={buttonStyle}
           onClick={() =>
             setActiveButton(activeButton === "play" ? null : "play")
           }
-        >Play Together</button>
+        >
+          Play Together
+        </button>
       </div>
 
       {/* Brush button - Elina */}
-      <div
-        onMouseEnter={() => setActiveButton("brush")}
-        onMouseLeave={() => setActiveButton(null)}
-        style={{ position: "relative" }}
-      >
+      <div style={{ position: "relative" }}>
         {activeButton === "brush" && (
           <div style={bubbleStyle}>
             <img src="/bubble-1.svg" style={bubbleBackgroundStyle} />
@@ -194,24 +188,27 @@ export default function BottomActionBar( {
           </div>
         )}
 
-        <button style={buttonStyle}>Brush the Fur</button>
+        <button
+          style={buttonStyle}
+          onClick={() =>
+            setActiveButton(activeButton === "brush" ? null : "brush")
+          }
+        >
+          Brush the Fur
+        </button>
       </div>
 
       {/* Bed button - Jonah */}
-      <div
-        style={{ position: "relative" }}
-      >
+      <div style={{ position: "relative" }}>
         {activeButton === "bed" && (
           <div style={bubbleStyle}>
             <img src="/bubble-2.svg" style={bubbleBackgroundStyle} />
 
-            {/* yellow bed option - Jonah can add onClick here */}
+            {/* yellow bed option - Jonah */}
             <img
               src="/bed-1.svg"
               onClick={() => {
-                setSelectedBed(prev =>
-                  prev === "yellow" ? null : "yellow"
-                );
+                setSelectedBed((prev) => (prev === "yellow" ? null : "yellow"));
               }}
               style={{
                 position: "absolute",
@@ -224,13 +221,11 @@ export default function BottomActionBar( {
               }}
             />
 
-            {/* green bed option - Jonah can add onClick here */}
+            {/* green bed option - Jonah */}
             <img
               src="/bed-2.png"
               onClick={() => {
-                setSelectedBed(prev =>
-                  prev === "green" ? null : "green"
-                );
+                setSelectedBed((prev) => (prev === "green" ? null : "green"));
               }}
               style={{
                 position: "absolute",
@@ -245,12 +240,14 @@ export default function BottomActionBar( {
           </div>
         )}
 
-        <button 
+        <button
           style={buttonStyle}
           onClick={() =>
             setActiveButton(activeButton === "bed" ? null : "bed")
           }
-        >Set Up Bed</button>
+        >
+          Set Up Bed
+        </button>
       </div>
     </div>
   );

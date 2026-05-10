@@ -1,11 +1,12 @@
 // CatDisplay.jsx: Displays the selected cat image on the play screen.
 
-export default function CatDisplay({ 
+export default function CatDisplay({
+  selectedCat,
   selectedBed,
   ballSpeed,
   featherActive,
 }) {
-  let catImage = "/cat-1.svg";
+  let catImage = selectedCat || "/cat-1.svg";
 
   let catStyle = {
     width: "100%",
@@ -24,8 +25,7 @@ export default function CatDisplay({
       width: "103%",
       height: "103%",
       left: "15px",
-    }
-
+    };
   } else if (ballSpeed !== "stop") {
     catImage = "/catcrouch-1.svg";
 
@@ -34,8 +34,7 @@ export default function CatDisplay({
       width: "118%",
       height: "118%",
       left: "-25px",
-    }
-
+    };
   }
 
   return (
@@ -77,6 +76,7 @@ export default function CatDisplay({
           }}
         />
       )}
+
       <div
         style={{
           width: "425px",
@@ -84,10 +84,7 @@ export default function CatDisplay({
           position: "relative",
         }}
       >
-        <img
-          src={catImage}
-          style={catStyle}
-        />
+        <img src={catImage} style={catStyle} />
       </div>
     </div>
   );

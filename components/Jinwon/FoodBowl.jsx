@@ -1,6 +1,7 @@
 // FoodBowl.jsx: Displays the bowl and shows dry or wet food when the bowl is clicked.
 
 export default function FoodBowl() {
+    // const {setEmotion} = useCatContext();
   return (
     <div
       style={{
