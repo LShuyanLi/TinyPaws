@@ -8,7 +8,6 @@ import CatDisplay from "@/components/shared/CatDisplay";
 import FoodBowl from "@/components/Jinwon/FoodBowl";
 import WaterBottle from "@/components/Jinwon/WaterBottle";
 import CatEmotion from "@/components/Jessica/CatEmotion";
-import Feather from "@/components/Jonah/Feather";
 
 export default function PlayScreen() {
   const [selectedBed, setSelectedBed] = useState(null);
@@ -71,15 +70,12 @@ export default function PlayScreen() {
         <FoodBowl />
         <CatDisplay selectedBed={selectedBed}/>
         <WaterBottle />
-        <Feather featherActive={featherActive}/>
       </div>
 
       <BottomActionBar 
         activeButton={activeButton}
         setActiveButton={setActiveButton}
         setSelectedBed={setSelectedBed}
-        featherActive={featherActive}
-        setFeatherActive={setFeatherActive}
       />
     </section>
   );
