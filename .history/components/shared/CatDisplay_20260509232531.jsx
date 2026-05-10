@@ -13,29 +13,18 @@ export default function CatDisplay({
     objectFit: "contain",
     position: "absolute",
     bottom: "0px",
-    left: "0px",
   };
 
   if (featherActive) {
     catImage = "/catreach-1.svg";
 
     catStyle = {
-      ...catStyle,
-      width: "103%",
-      height: "103%",
-      left: "15px",
+      width: "80%",
+      left: "20px"
     }
 
   } else if (ballSpeed !== "stop") {
     catImage = "/catcrouch-1.svg";
-
-    catStyle = {
-      ...catStyle,
-      width: "118%",
-      height: "118%",
-      left: "-25px",
-    }
-
   }
 
   return (

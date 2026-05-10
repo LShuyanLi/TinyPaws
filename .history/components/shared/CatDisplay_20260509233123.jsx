@@ -13,7 +13,6 @@ export default function CatDisplay({
     objectFit: "contain",
     position: "absolute",
     bottom: "0px",
-    left: "0px",
   };
 
   if (featherActive) {
@@ -21,21 +20,12 @@ export default function CatDisplay({
 
     catStyle = {
       ...catStyle,
-      width: "103%",
-      height: "103%",
-      left: "15px",
+      width: "400%",
+      left: "-400px"
     }
 
   } else if (ballSpeed !== "stop") {
     catImage = "/catcrouch-1.svg";
-
-    catStyle = {
-      ...catStyle,
-      width: "118%",
-      height: "118%",
-      left: "-25px",
-    }
-
   }
 
   return (

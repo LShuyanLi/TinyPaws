@@ -33,7 +33,7 @@ export default function CatDisplay({
       ...catStyle,
       width: "118%",
       height: "118%",
-      left: "-25px",
+      left: "-30px",
     }
 
   }
