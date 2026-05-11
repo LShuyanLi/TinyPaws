@@ -10,6 +10,8 @@ export default function BottomActionBar({
   setBallSpeed,
   featherActive,
   setFeatherActive,
+  setBowlType,
+  setWaterLevel,
 }) {
   return (
     <div
@@ -39,9 +41,14 @@ export default function BottomActionBar({
           <div style={bubbleStyle}>
             <img src="/bubble-3.svg" style={bubbleBackgroundStyle} />
 
-            {/* dry food option - Jinwon can add onClick here */}
+            {/* dry food option - Jinwon */}
             <img
               src="/dryfood.svg"
+              onClick={() => {
+                setBowlType((prev) => (prev === "dry" ? null : "dry"));
+                setWaterLevel(0);
+                setActiveButton(null);
+              }}
               style={{
                 position: "absolute",
                 top: "8%",
@@ -52,24 +59,43 @@ export default function BottomActionBar({
                 cursor: "pointer",
               }}
             />
+            {/* wet food option - Jinwon */}
+              <img
+                src="/wetfood.svg"
+                onClick={() => {
+                  setBowlType((prev) => (prev === "wet" ? null : "wet"));
+                  setWaterLevel(0);
+                  setActiveButton(null);
+                }}
+                style={{
+                  position: "absolute",
+                  top: "34%",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: "45%",
+                  height: "auto",
+                  cursor: "pointer",
+                }}
+              />
 
-            {/* wet food option - Jinwon can add onClick here */}
-            <img
-              src="/wetfood.svg"
-              style={{
-                position: "absolute",
-                top: "34%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "45%",
-                height: "auto",
-                cursor: "pointer",
-              }}
-            />
-
-            {/* water option - Jinwon can add onClick here */}
+            {/* water option - Jinwon */}
             <img
               src="/water.svg"
+              onClick={() => {
+                setWaterLevel((prev) => {
+                  if (prev === 0) {
+                    return 25;
+                  } else if (prev === 25) {
+                    return 50;
+                  } else if (prev === 50) {
+                    return 100;
+                  } else {
+                    return 0;
+                  }
+                });
+
+                setActiveButton(null);
+              }}
               style={{
                 position: "absolute",
                 top: "60%",

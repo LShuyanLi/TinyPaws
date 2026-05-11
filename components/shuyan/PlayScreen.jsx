@@ -18,6 +18,10 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
   const [activeButton, setActiveButton] = useState(null);
   const [ballSpeed, setBallSpeed] = useState("stop");
   const [featherActive, setFeatherActive] = useState(false);
+  const [waterLevel, setWaterLevel] = useState(0);
+
+  // Food / water selection from BottomActionBar
+  const [bowlType, setBowlType] = useState(null);
 
   return (
     <section
@@ -71,7 +75,7 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
         }}
       >
         <CatEmotion />
-        <FoodBowl />
+        <FoodBowl bowlType={bowlType} />
 
         <div style={{ position: "absolute", inset: 0, zIndex: 10 }}>
           <CatDisplay
@@ -86,7 +90,7 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
           <PlayBall ballSpeed={ballSpeed} />
         </div>
 
-        <WaterBottle />
+        <WaterBottle waterLevel={waterLevel} />
         <Feather featherActive={featherActive} />
       </div>
 
@@ -98,6 +102,8 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
         setBallSpeed={setBallSpeed}
         featherActive={featherActive}
         setFeatherActive={setFeatherActive}
+        setBowlType={setBowlType}
+        setWaterLevel={setWaterLevel}
       />
     </section>
   );
