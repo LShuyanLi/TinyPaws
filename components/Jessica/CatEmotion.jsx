@@ -15,7 +15,7 @@ export default function CatEmotion() {
       <div
         style={{
           position: "relative",
-          width: "320px",
+          width: "200px",
           minHeight: "70px",
           backgroundColor: "#ffffff",
           borderRadius: "16px",
@@ -29,7 +29,7 @@ export default function CatEmotion() {
           fontWeight: "400",
         }}
       >
-        Don’t touch meT_T
+        happy
       </div>
 
       {/* Small bubble dots */}
