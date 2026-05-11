@@ -46,7 +46,6 @@ export default function BottomActionBar({
               src="/dryfood.svg"
               onClick={() => {
                 setBowlType((prev) => (prev === "dry" ? null : "dry"));
-                setWaterLevel(0);
                 setActiveButton(null);
               }}
               style={{
@@ -64,7 +63,6 @@ export default function BottomActionBar({
                 src="/wetfood.svg"
                 onClick={() => {
                   setBowlType((prev) => (prev === "wet" ? null : "wet"));
-                  setWaterLevel(0);
                   setActiveButton(null);
                 }}
                 style={{
