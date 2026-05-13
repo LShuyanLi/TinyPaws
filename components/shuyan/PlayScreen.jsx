@@ -14,6 +14,7 @@ import PlayBall from "@/components/Jonah/PlayBall";
 import Feather from "@/components/Jonah/Feather";
 
 export default function PlayScreen({ goToChoose, selectedCat }) {
+  const [name, setName] = useState('Kitty');
   const [selectedBed, setSelectedBed] = useState(null);
   const [activeButton, setActiveButton] = useState(null);
   const [ballSpeed, setBallSpeed] = useState("stop");
@@ -48,7 +49,7 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
           zIndex: 5,
         }}
       >
-        Take care of CatName
+        Take care of {name}
       </h1>
 
       <div
@@ -97,6 +98,8 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
       <BottomActionBar
         activeButton={activeButton}
         setActiveButton={setActiveButton}
+        name={name}
+        setName={setName}
         setSelectedBed={setSelectedBed}
         ballSpeed={ballSpeed}
         setBallSpeed={setBallSpeed}

@@ -2,9 +2,13 @@
 
 // BottomActionBar.jsx: Displays the bottom interaction buttons and shows each hover bubble.
 
+import NameTag from "@/components/Elina/NameTag";
+
 export default function BottomActionBar({
   activeButton,
   setActiveButton,
+  name,
+  setName,
   setSelectedBed,
   ballSpeed,
   setBallSpeed,
@@ -32,7 +36,22 @@ export default function BottomActionBar({
     >
       {/* Name button - Elina can connect this to NameTag modal later */}
       <div style={{ position: "relative" }}>
-        <button style={buttonStyle}>Give a Name Tag</button>
+        {activeButton === "name" && (
+          <NameTag
+            name={name}
+            setName={setName}
+            setActiveButton={setActiveButton}
+          />
+        )}
+
+        <button
+          style={buttonStyle}
+          onClick={() =>
+            setActiveButton(activeButton === "name" ? null : "name")
+          }
+        >
+          Give a Name Tag
+        </button>
       </div>
 
       {/* Feed button - Jinwon */}
