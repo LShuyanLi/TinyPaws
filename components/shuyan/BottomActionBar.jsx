@@ -14,6 +14,8 @@ export default function BottomActionBar({
   setBallSpeed,
   featherActive,
   setFeatherActive,
+  pettingActive,
+  setPettingActive,
   setBowlType,
   setWaterLevel,
 }) {
@@ -147,7 +149,7 @@ export default function BottomActionBar({
               src="/ball.svg"
               onClick={() => {
                 setFeatherActive(false);
-
+                setPettingActive(false);
                 setBallSpeed((prev) =>
                   prev === "stop" ? "slow" : prev === "slow" ? "fast" : "stop"
                 );
@@ -169,6 +171,7 @@ export default function BottomActionBar({
               src="/feather.svg"
               onClick={() => {
                 setBallSpeed("stop");
+                setPettingActive(false);
                 setFeatherActive((prev) => !prev);
               }}
               style={{
@@ -186,6 +189,11 @@ export default function BottomActionBar({
             {/* hand option - Elina can add onClick here */}
             <img
               src="/hand.svg"
+              onClick={() => {
+                setBallSpeed("stop");
+                setFeatherActive(false);
+                setPettingActive((prev) => !prev);
+              }}
               style={{
                 position: "absolute",
                 top: "55%",
@@ -194,6 +202,7 @@ export default function BottomActionBar({
                 width: "42%",
                 height: "auto",
                 cursor: "pointer",
+                opacity: pettingActive ? 1 : 0.7,
               }}
             />
           </div>
