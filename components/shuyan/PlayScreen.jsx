@@ -13,6 +13,7 @@ import CatEmotion from "@/components/Jessica/CatEmotion";
 import PlayBall from "@/components/Jonah/PlayBall";
 import Feather from "@/components/Jonah/Feather";
 import MovingHand from "@/components/Elina/MovingHand";
+import BrushTool from "@/components/Elina/BrushTool";
 
 export default function PlayScreen({ goToChoose, selectedCat }) {
   const [name, setName] = useState('Kitty');
@@ -21,6 +22,7 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
   const [ballSpeed, setBallSpeed] = useState("stop");
   const [featherActive, setFeatherActive] = useState(false);
   const [pettingActive, setPettingActive] = useState(false);
+  const [brushActive, setBrushActive] = useState(false);
   const [waterLevel, setWaterLevel] = useState(0);
 
   // Food / water selection from BottomActionBar
@@ -96,6 +98,7 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
         <WaterBottle waterLevel={waterLevel} />
         <Feather featherActive={featherActive} />
         <MovingHand pettingActive={pettingActive} />
+        <BrushTool brushActive={brushActive} />
       </div>
 
       <BottomActionBar
@@ -110,6 +113,8 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
         setFeatherActive={setFeatherActive}
         pettingActive={pettingActive}
         setPettingActive={setPettingActive}
+        brushActive={brushActive}
+        setBrushActive={setBrushActive}
         setBowlType={setBowlType}
         setWaterLevel={setWaterLevel}
       />

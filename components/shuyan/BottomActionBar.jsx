@@ -16,6 +16,8 @@ export default function BottomActionBar({
   setFeatherActive,
   pettingActive,
   setPettingActive,
+  brushActive,
+  setBrushActive,
   setBowlType,
   setWaterLevel,
 }) {
@@ -150,6 +152,7 @@ export default function BottomActionBar({
               onClick={() => {
                 setFeatherActive(false);
                 setPettingActive(false);
+                setBrushActive(false);
                 setBallSpeed((prev) =>
                   prev === "stop" ? "slow" : prev === "slow" ? "fast" : "stop"
                 );
@@ -172,6 +175,7 @@ export default function BottomActionBar({
               onClick={() => {
                 setBallSpeed("stop");
                 setPettingActive(false);
+                setBrushActive(false);
                 setFeatherActive((prev) => !prev);
               }}
               style={{
@@ -193,6 +197,7 @@ export default function BottomActionBar({
                 setBallSpeed("stop");
                 setFeatherActive(false);
                 setPettingActive((prev) => !prev);
+                setBrushActive(false);
               }}
               style={{
                 position: "absolute",
@@ -227,6 +232,12 @@ export default function BottomActionBar({
             {/* brush option - Elina can add onClick here */}
             <img
               src="/brush.svg"
+              onClick={() => {
+                setBallSpeed("stop");
+                setPettingActive(false);
+                setFeatherActive(false);
+                setBrushActive((prev) => !prev);
+              }}
               style={{
                 position: "absolute",
                 top: "22%",
@@ -235,6 +246,7 @@ export default function BottomActionBar({
                 width: "55%",
                 height: "auto",
                 cursor: "pointer",
+                opacity: brushActive ? 1 : 0.7,
               }}
             />
           </div>
