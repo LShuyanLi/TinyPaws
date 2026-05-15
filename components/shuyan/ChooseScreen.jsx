@@ -41,7 +41,7 @@ export default function ChooseScreen({ goToPlay }) {
         >
             <PokeCatBall 
                 closeBall="/CloseBall.svg"
-                openBall="/OpenBall-1.svg"
+                openBall="/Openball-1.svg"
                 catImage="/cat-1.svg" 
                 goToPlay={goToPlay} />
             <PokeCatBall 
@@ -51,7 +51,7 @@ export default function ChooseScreen({ goToPlay }) {
                 goToPlay={goToPlay} />
             <PokeCatBall 
                 closeBall="/CloseBall.svg"
-                openBall="/OpenBall-3.svg"
+                openBall="/openBall-3.svg"
                 catImage="/cat-3.svg" 
                 goToPlay={goToPlay} />
         </div>
