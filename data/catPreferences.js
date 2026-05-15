@@ -41,7 +41,7 @@ export const catPreferences = {
     },
     sleep: {
       sleeping: 0,  
-      awake: 10,     
+      awake: 0,     
     },
     play: {
       ball: 10,     

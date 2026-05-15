@@ -10,13 +10,10 @@ function FoodProvider({ children }) {
   };
 
   const selectWetFood = () => {
-    console.log("selectWetFood called");
     toggleFoodType("wet");
   };
   const selectDryFood = () => toggleFoodType("dry");
   const resetFood = () => setFoodType("none");
-
-  console.log("FoodProvider foodType updated:", foodType);
 
   return (
     <FoodContext.Provider

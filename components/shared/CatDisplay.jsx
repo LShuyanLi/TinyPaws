@@ -1,6 +1,7 @@
 // CatDisplay.jsx: Displays the selected cat image on the play screen.
 
 import { usePlay } from "@/components/Jessica/PlayProvider";
+import { useMood } from "@/components/Jessica/MoodContext";
 
 export default function CatDisplay({
   selectedCat,
@@ -8,12 +9,10 @@ export default function CatDisplay({
   ballSpeed,
 }) {
   const { activeActivity } = usePlay();
+  const { mood } = useMood();
   const featherActive = activeActivity === "feather";
 
-  // Normal selected cat image
-  let catImage = selectedCat || "/cat-1.svg";
-
-  // Find which cat the user selected
+    // Find which cat the user selected
   let catNumber = "1";
 
   if (selectedCat === "/cat-2.svg") {
@@ -21,6 +20,18 @@ export default function CatDisplay({
   } else if (selectedCat === "/cat-3.svg") {
     catNumber = "3";
   }
+
+    const emotionSuffix = catNumber === "1"
+  ? mood === "happy" ? "-happy"
+  : mood === "upset" ? "-mad"
+  : ""
+  : "";
+
+
+  // Normal selected cat image
+  let catImage = catNumber === "1"
+  ? `/cat-1${emotionSuffix}.svg`
+  : (selectedCat || "/cat-1.svg");
 
   let catStyle = {
     width: "100%",
@@ -33,7 +44,7 @@ export default function CatDisplay({
 
   // Feather action image
   if (featherActive) {
-    catImage = `/catreach-${catNumber}.svg`;
+    catImage = `/catreach-${catNumber}${emotionSuffix}.svg`;
 
     catStyle = {
       ...catStyle,
@@ -45,7 +56,7 @@ export default function CatDisplay({
 
   // Ball action image
   else if (ballSpeed !== "stop") {
-    catImage = `/catcrouch-${catNumber}.svg`;
+    catImage = `/catcrouch-${catNumber}${emotionSuffix}.svg`;
 
     catStyle = {
       ...catStyle,
