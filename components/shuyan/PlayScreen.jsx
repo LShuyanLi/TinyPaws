@@ -109,10 +109,18 @@ function PlayScreenContent({ goToChoose, selectedCat, name, setName, selectedBed
   );
 }
 
+const CAT_PATH_TO_ID = {
+  "/cat-1.svg": "mittens",
+  "/cat-2.svg": "shadow",
+  "/cat-3.svg": "fluffy",
+};
+
 export default function PlayScreen({ goToChoose, selectedCat }) {
   const [name, setName] = useState('Kitty');
   const [selectedBed, setSelectedBed] = useState(null);
   const [activeButton, setActiveButton] = useState(null);
+
+  const catId = CAT_PATH_TO_ID[selectedCat] ?? "fluffy";
 
   return (
     <SleepProvider>
@@ -120,7 +128,7 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
         <PlayProvider>
           <WaterProvider>
             <BrushProvider>
-              <MoodProvider selectedCat={selectedCat}>
+              <MoodProvider selectedCat={catId}>
                 <PlayScreenContent
                   goToChoose={goToChoose}
                   selectedCat={selectedCat}

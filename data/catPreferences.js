@@ -1,83 +1,82 @@
-// catPreferences.js
 // Define each cat's preferences for activities and food types
-// Values: -1 (dislike), 0 (neutral), 1 (like)
+// -10 (dislike), 0 (neutral), 10 (like)
 
 export const catPreferences = {
   fluffy: {
-    name: "Fluffy",
+    name: "Fluffy", // id name
     food: {
-      wet: 0,      // neutral about wet food
-      dry: -1,     // dislikes dry food (randomly assigned)
-      none: 0,     // neutral when not eating
+      wet: 0,      
+      dry: -10,     
+      none: 0,     
     },
     water: {
-      drinking: 1, // loves fresh water
-      idle: 0,     // neutral when not drinking
+      drinking: 10, 
+      idle: 0,     
     },
     sleep: {
-      sleeping: 0, // neutral about sleeping
-      awake: 0,    // neutral when awake
+      sleeping: 0, 
+      awake: 0,    
     },
     play: {
-      ball: -1,    // dislikes ball (opposite of feather)
-      feather: 1,  // loves following a floating feather
-      petting: 0,  // neutral about petting
-      none: 0,     // neutral when not playing
+      ball: -10,    
+      feather: 10,  
+      petting: 0,  
+      none: 0,     
     },
     brush: {
-      brushing: 0, // neutral about brushing
-      idle: 0,     // neutral when not brushing
+      brushing: 0, 
+      idle: 0,     
     },
   },
   mittens: {
-    name: "Mittens",
+    name: "Mittens", //id name
     food: {
-      wet: -1,     // dislikes wet food (opposite of dry)
-      dry: 1,      // loves crunchy dry food
+      wet: -10,    
+      dry: 10,     
       none: 0,
     },
     water: {
-      drinking: 0, // neutral about water
+      drinking: 10, 
       idle: 0,
     },
     sleep: {
-      sleeping: 0,  // neutral about sleeping
-      awake: 1,     // prefers being awake
+      sleeping: 0,  
+      awake: 10,     
     },
     play: {
-      ball: 1,     // loves chasing a rolling ball
-      feather: 0,  // neutral about feather
-      petting: -1, // dislikes petting (opposite of ball, randomly assigned)
+      ball: 10,     
+      feather: 0,  
+      petting: -10, 
       none: 0,
     },
     brush: {
-      brushing: -1, // dislikes brushing (randomly assigned)
+      brushing: -10, 
       idle: 0,
     },
   },
   shadow: {
-    name: "Shadow",
+    name: "Shadow", //id name
     food: {
-      wet: 1,      // loves soft wet food
-      dry: -1,     // dislikes dry food (opposite of wet)
+      wet: 10,      
+      dry: -10,     
       none: 0,
     },
     water: {
-      drinking: 0, // neutral about water
+      drinking: 0, 
       idle: 0,
     },
     sleep: {
-      sleeping: 1,  // loves a quiet nap
-      awake: 0,     // neutral when awake
+      sleeping: 10,  
+      awake: 0,     
     },
     play: {
       ball: 0,
-      feather: -1, // dislikes feather (opposite of petting, randomly assigned)
-      petting: 1,  // loves gentle hand play
+      feather: -10, 
+      petting: 10,  
       none: 0,
     },
     brush: {
-      brushing: -1, // dislikes brushing (randomly assigned)
+      brushing: -10, 
       idle: 0,
     },
   },

@@ -6,16 +6,17 @@ function FoodProvider({ children }) {
   const [foodType, setFoodType] = useState("none"); // "wet", "dry", or "none"
 
   const toggleFoodType = (type) => {
-    if (foodType === type) {
-      setFoodType("none");
-    } else {
-      setFoodType(type);
-    }
+    setFoodType(prev => prev === type ? "none" : type);
   };
 
-  const selectWetFood = () => toggleFoodType("wet");
+  const selectWetFood = () => {
+    console.log("selectWetFood called");
+    toggleFoodType("wet");
+  };
   const selectDryFood = () => toggleFoodType("dry");
   const resetFood = () => setFoodType("none");
+
+  console.log("FoodProvider foodType updated:", foodType);
 
   return (
     <FoodContext.Provider

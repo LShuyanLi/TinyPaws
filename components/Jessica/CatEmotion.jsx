@@ -5,14 +5,13 @@ import { useMood } from "@/components/Jessica/MoodContext";
 export default function CatEmotion() {
   const { mood } = useMood();
 
-  // Map mood to emoji and text
-  const emotionMap = {
+  const emotions = {
     happy: { emoji: "😻", text: "happy" },
     neutral: { emoji: "😺", text: "neutral" },
     upset: { emoji: "😾", text: "upset" },
   };
 
-  const emotion = emotionMap[mood] || emotionMap.neutral;
+  const emotion = emotions[mood] || emotions.neutral;
 
   return (
     <div
