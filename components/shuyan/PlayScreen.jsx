@@ -3,7 +3,13 @@
 "use client";
 
 import { useState } from "react";
-
+import { SleepProvider } from "@/components/Jessica/SleepProvider";
+import { FoodProvider } from "@/components/Jessica/FoodProvider";
+import { PlayProvider } from "@/components/Jessica/PlayProvider";
+import { WaterProvider } from "@/components/Jessica/WaterProvider";
+import { BrushProvider } from "@/components/Jessica/BrushProvider";
+import { MoodProvider } from "@/components/Jessica/MoodContext";
+import { usePlay } from "@/components/Jessica/PlayProvider";
 import BackButton from "@/components/shuyan/BackButton";
 import BottomActionBar from "@/components/shuyan/BottomActionBar";
 import CatDisplay from "@/components/shared/CatDisplay";
@@ -15,18 +21,8 @@ import Feather from "@/components/Jonah/Feather";
 import MovingHand from "@/components/Elina/MovingHand";
 import BrushTool from "@/components/Elina/BrushTool";
 
-export default function PlayScreen({ goToChoose, selectedCat }) {
-  const [name, setName] = useState('Kitty');
-  const [selectedBed, setSelectedBed] = useState(null);
-  const [activeButton, setActiveButton] = useState(null);
-  const [ballSpeed, setBallSpeed] = useState("stop");
-  const [featherActive, setFeatherActive] = useState(false);
-  const [pettingActive, setPettingActive] = useState(false);
-  const [brushActive, setBrushActive] = useState(false);
-  const [waterLevel, setWaterLevel] = useState(0);
-
-  // Food / water selection from BottomActionBar
-  const [bowlType, setBowlType] = useState(null);
+function PlayScreenContent({ goToChoose, selectedCat, name, setName, selectedBed, setSelectedBed, activeButton, setActiveButton }) {
+  const { ballSpeed, setBallSpeed } = usePlay();
 
   return (
     <section
@@ -80,14 +76,13 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
         }}
       >
         <CatEmotion />
-        <FoodBowl bowlType={bowlType} />
+        <FoodBowl />
 
         <div style={{ position: "absolute", inset: 0, zIndex: 10 }}>
           <CatDisplay
             selectedCat={selectedCat}
             selectedBed={selectedBed}
             ballSpeed={ballSpeed}
-            featherActive={featherActive}
           />
         </div>
 
@@ -95,10 +90,10 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
           <PlayBall ballSpeed={ballSpeed} />
         </div>
 
-        <WaterBottle waterLevel={waterLevel} />
-        <Feather featherActive={featherActive} />
-        <MovingHand pettingActive={pettingActive} />
-        <BrushTool brushActive={brushActive} />
+        <WaterBottle />
+        <Feather />
+        <MovingHand />
+        <BrushTool />
       </div>
 
       <BottomActionBar
@@ -109,15 +104,46 @@ export default function PlayScreen({ goToChoose, selectedCat }) {
         setSelectedBed={setSelectedBed}
         ballSpeed={ballSpeed}
         setBallSpeed={setBallSpeed}
-        featherActive={featherActive}
-        setFeatherActive={setFeatherActive}
-        pettingActive={pettingActive}
-        setPettingActive={setPettingActive}
-        brushActive={brushActive}
-        setBrushActive={setBrushActive}
-        setBowlType={setBowlType}
-        setWaterLevel={setWaterLevel}
       />
     </section>
+  );
+}
+
+const CAT_PATH_TO_ID = {
+  "/cat-1.svg": "mittens",
+  "/cat-2.svg": "shadow",
+  "/cat-3.svg": "fluffy",
+};
+
+export default function PlayScreen({ goToChoose, selectedCat }) {
+  const [name, setName] = useState('Kitty');
+  const [selectedBed, setSelectedBed] = useState(null);
+  const [activeButton, setActiveButton] = useState(null);
+
+  const catId = CAT_PATH_TO_ID[selectedCat] ?? "fluffy";
+
+  return (
+    <SleepProvider>
+      <FoodProvider>
+        <PlayProvider>
+          <WaterProvider>
+            <BrushProvider>
+              <MoodProvider selectedCat={catId}>
+                <PlayScreenContent
+                  goToChoose={goToChoose}
+                  selectedCat={selectedCat}
+                  name={name}
+                  setName={setName}
+                  selectedBed={selectedBed}
+                  setSelectedBed={setSelectedBed}
+                  activeButton={activeButton}
+                  setActiveButton={setActiveButton}
+                />
+              </MoodProvider>
+            </BrushProvider>
+          </WaterProvider>
+        </PlayProvider>
+      </FoodProvider>
+    </SleepProvider>
   );
 }

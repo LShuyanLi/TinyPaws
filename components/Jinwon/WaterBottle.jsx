@@ -1,6 +1,9 @@
 // WaterBottle.jsx: Displays the water bottle and shows water level when water is selected.
 
-export default function WaterBottle({ waterLevel }) {
+import { useWater } from "@/components/Jessica/WaterProvider";
+
+export default function WaterBottle() {
+  const { waterLevel } = useWater();
   let waterImage = null;
 
   if (waterLevel === 25) {

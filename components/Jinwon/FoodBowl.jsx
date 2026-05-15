@@ -1,13 +1,16 @@
 // FoodBowl.jsx: Displays the bowl and shows dry or wet food when the bowl is filled.
 
-export default function FoodBowl({ bowlType }) {
-  const isBowlFilled = bowlType === "dry" || bowlType === "wet";
+import { useFood } from "@/components/Jessica/FoodProvider";
+
+export default function FoodBowl() {
+  const { foodType } = useFood();
+  const isBowlFilled = foodType === "dry" || foodType === "wet";
 
   let foodImage = "";
 
-  if (bowlType === "dry") {
+  if (foodType === "dry") {
     foodImage = "/dryfood-full.svg";
-  } else if (bowlType === "wet") {
+  } else if (foodType === "wet") {
     foodImage = "/wetfood-full.svg";
   }
 

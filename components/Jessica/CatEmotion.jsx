@@ -1,6 +1,18 @@
 // CatEmotion.jsx: Displays the cat’s emotion emoji and thought bubble based on interaction results.
 
+import { useMood } from "@/components/Jessica/MoodContext";
+
 export default function CatEmotion() {
+  const { mood } = useMood();
+
+  const emotions = {
+    happy: { emoji: "😻", text: "happy" },
+    neutral: { emoji: "😺", text: "neutral" },
+    upset: { emoji: "😾", text: "upset" },
+  };
+
+  const emotion = emotions[mood] || emotions.neutral;
+
   return (
     <div
       style={{
@@ -29,7 +41,8 @@ export default function CatEmotion() {
           fontWeight: "400",
         }}
       >
-        happy
+        <span style={{ marginRight: "8px" }}>{emotion.emoji}</span>
+        {emotion.text}
       </div>
 
       {/* Small bubble dots */}

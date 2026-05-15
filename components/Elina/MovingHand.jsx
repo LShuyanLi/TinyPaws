@@ -1,8 +1,11 @@
 // Displays the hand toy and controls its start/stop movement.
 
 import React, { useState, useEffect } from "react";
+import { usePlay } from "@/components/Jessica/PlayProvider";
 
-export default function MovingHand({ pettingActive }) {
+export default function MovingHand() {
+	const { activeActivity } = usePlay();
+	const pettingActive = activeActivity === "petting";
 	const [t, setT] = useState(0);
 
 	useEffect(() => {

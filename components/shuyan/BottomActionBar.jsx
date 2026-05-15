@@ -3,24 +3,28 @@
 // BottomActionBar.jsx: Displays the bottom interaction buttons and shows each hover bubble.
 
 import NameTag from "@/components/Elina/NameTag";
+import { useFood } from "@/components/Jessica/FoodProvider";
+import { usePlay } from "@/components/Jessica/PlayProvider";
+import { useWater } from "@/components/Jessica/WaterProvider";
+import { useSleep } from "@/components/Jessica/SleepProvider";
+import { useBrush } from "@/components/Jessica/BrushProvider";
 
 export default function BottomActionBar({
   activeButton,
   setActiveButton,
   name,
   setName,
-  setSelectedBed,
-  ballSpeed,
-  setBallSpeed,
-  featherActive,
-  setFeatherActive,
-  pettingActive,
-  setPettingActive,
-  brushActive,
-  setBrushActive,
-  setBowlType,
-  setWaterLevel,
+  setSelectedBed
 }) {
+  // Get context hooks for activities
+  const { selectWetFood, selectDryFood, resetFood } = useFood();
+  const { playBall, playFeather, petCat, stopActivity, ballSpeed  } = usePlay();
+  const { toggleWatering } = useWater();
+  const { toggleSleeping } = useSleep();
+  const { toggleBrushing } = useBrush();
+  
+  
+
   return (
     <div
       style={{
@@ -68,7 +72,7 @@ export default function BottomActionBar({
             <img
               src="/dryfood.svg"
               onClick={() => {
-                setBowlType((prev) => (prev === "dry" ? null : "dry"));
+                selectDryFood();
                 setActiveButton(null);
               }}
               style={{
@@ -85,7 +89,7 @@ export default function BottomActionBar({
               <img
                 src="/wetfood.svg"
                 onClick={() => {
-                  setBowlType((prev) => (prev === "wet" ? null : "wet"));
+                  selectWetFood();
                   setActiveButton(null);
                 }}
                 style={{
@@ -103,18 +107,7 @@ export default function BottomActionBar({
             <img
               src="/water.svg"
               onClick={() => {
-                setWaterLevel((prev) => {
-                  if (prev === 0) {
-                    return 25;
-                  } else if (prev === 25) {
-                    return 50;
-                  } else if (prev === 50) {
-                    return 100;
-                  } else {
-                    return 0;
-                  }
-                });
-
+                toggleWatering();
                 setActiveButton(null);
               }}
               style={{
@@ -149,13 +142,12 @@ export default function BottomActionBar({
             {/* ball option - Jonah */}
             <img
               src="/ball.svg"
-              onClick={() => {
-                setFeatherActive(false);
-                setPettingActive(false);
-                setBrushActive(false);
-                setBallSpeed((prev) =>
-                  prev === "stop" ? "slow" : prev === "slow" ? "fast" : "stop"
-                );
+                onClick={() => {
+                // Cycle through ball speeds: stop -> slow -> fast -> stop
+                if (ballSpeed === "stop") playBall("slow");
+                else if (ballSpeed === "slow") playBall("fast");
+                else stopActivity();
+                setActiveButton(null);
               }}
               style={{
                 position: "absolute",
@@ -173,10 +165,8 @@ export default function BottomActionBar({
             <img
               src="/feather.svg"
               onClick={() => {
-                setBallSpeed("stop");
-                setPettingActive(false);
-                setBrushActive(false);
-                setFeatherActive((prev) => !prev);
+                playFeather();
+                setActiveButton(null);
               }}
               style={{
                 position: "absolute",
@@ -186,7 +176,6 @@ export default function BottomActionBar({
                 width: "55%",
                 height: "auto",
                 cursor: "pointer",
-                opacity: featherActive ? 1 : 0.7,
               }}
             />
 
@@ -194,10 +183,8 @@ export default function BottomActionBar({
             <img
               src="/hand.svg"
               onClick={() => {
-                setBallSpeed("stop");
-                setFeatherActive(false);
-                setPettingActive((prev) => !prev);
-                setBrushActive(false);
+                petCat();
+                setActiveButton(null);
               }}
               style={{
                 position: "absolute",
@@ -207,7 +194,6 @@ export default function BottomActionBar({
                 width: "42%",
                 height: "auto",
                 cursor: "pointer",
-                opacity: pettingActive ? 1 : 0.7,
               }}
             />
           </div>
@@ -233,10 +219,8 @@ export default function BottomActionBar({
             <img
               src="/brush.svg"
               onClick={() => {
-                setBallSpeed("stop");
-                setPettingActive(false);
-                setFeatherActive(false);
-                setBrushActive((prev) => !prev);
+                toggleBrushing();
+                setActiveButton(null);
               }}
               style={{
                 position: "absolute",
@@ -246,7 +230,6 @@ export default function BottomActionBar({
                 width: "55%",
                 height: "auto",
                 cursor: "pointer",
-                opacity: brushActive ? 1 : 0.7,
               }}
             />
           </div>

@@ -1,7 +1,10 @@
 // Handles feather toy options and its controls (3mode: 1->3 feathers, 2->6 feathers, 3->9 feathers).
 import { useState, useEffect } from "react";
+import { usePlay } from "@/components/Jessica/PlayProvider";
 
-export default function Feather({ featherActive }) {
+export default function Feather() {
+	const { activeActivity } = usePlay();
+	const featherActive = activeActivity === "feather";
 	const [position, setPosition] = useState(0);
 	const [direction, setDirection] = useState(1);
 
