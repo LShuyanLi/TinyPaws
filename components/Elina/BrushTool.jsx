@@ -1,23 +1,25 @@
 // Displays the brush tool and controls its start/stop movement.
 
 import { useState, useEffect } from "react";
+import { useBrush } from "@/components/Jessica/BrushProvider";
 
-export default function BrushTool({ brushActive }) {
+export default function BrushTool() {
+	const { brushing } = useBrush();
 	const [t, setT] = useState(0);
 
 	useEffect(() => {
 		let interval;
 
-		if (brushActive) {
+		if (brushing) {
 			interval = setInterval(() => {
 				setT(prev => (prev + 0.02) % (Math.PI * 2));
 			}, 20);
 		}
 
 		return () => clearInterval(interval);
-	}, [brushActive]);
+	}, [brushing]);
 
-	if (!brushActive) return null;
+	if (!brushing) return null;
 
 	// Kidney bean shape parametric equations.
 	const a = 50;

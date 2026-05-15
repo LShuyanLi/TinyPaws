@@ -1,11 +1,15 @@
 // CatDisplay.jsx: Displays the selected cat image on the play screen.
 
+import { usePlay } from "@/components/Jessica/PlayProvider";
+
 export default function CatDisplay({
   selectedCat,
   selectedBed,
   ballSpeed,
-  featherActive,
 }) {
+  const { activeActivity } = usePlay();
+  const featherActive = activeActivity === "feather";
+
   // Normal selected cat image
   let catImage = selectedCat || "/cat-1.svg";
 
