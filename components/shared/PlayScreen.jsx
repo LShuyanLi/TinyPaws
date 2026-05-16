@@ -12,6 +12,7 @@ import WaterBottle from "@/components/Jinwon/WaterBottle";
 import FeedSystem from "@/components/Jinwon/FeedSystem";
 import CatEmotion from "@/components/Jessica/CatEmotion";
 
+export default function PlayScreen() {
   const [bowlType, setBowlType] = useState(null);
   const [hasWater, setHasWater] = useState(false);
 
@@ -88,3 +89,4 @@ import CatEmotion from "@/components/Jessica/CatEmotion";
       <FeedSystem onSelect={handleFeedSelect} />
     </section>
   );
+}
