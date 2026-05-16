@@ -1,0 +1,1 @@
+// Handles feather toy options and its controls (3mode: 1->3 feathers, 2->6 feathers, 3->9 feathers).

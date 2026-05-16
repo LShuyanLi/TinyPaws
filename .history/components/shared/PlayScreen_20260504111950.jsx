@@ -1,49 +1,19 @@
-"use client";
-
 // PlayScreen.jsx: Builds the main cat play screen with the background, cat area, feeding area, tools, bed, and bottom buttons.
-
-import { useEffect, useState } from "react";
+"use client"
+import { useState } from "react";
 
 import BackButton from "@/components/shuyan/BackButton";
 import BottomActionBar from "@/components/shuyan/BottomActionBar";
 import CatDisplay from "@/components/shared/CatDisplay";
 import FoodBowl from "@/components/Jinwon/FoodBowl";
 import WaterBottle from "@/components/Jinwon/WaterBottle";
-import FeedSystem from "@/components/Jinwon/FeedSystem";
 import CatEmotion from "@/components/Jessica/CatEmotion";
+import PlayBall from "@/components/Jonah/PlayBall";
 
 export default function PlayScreen() {
-  const [bowlType, setBowlType] = useState(null);
-  const [foodPercent, setFoodPercent] = useState(0);
-  const [waterPercent, setWaterPercent] = useState(0);
-
-  function handleFeedSelect(type) {
-    if (type === "water") {
-      setWaterPercent(100);
-    } else {
-      setBowlType(type);
-      setFoodPercent(100);
-    }
-  }
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setFoodPercent((prev) => {
-        if (prev <= 0) return 0;
-        const next = prev - 10;
-        if (next <= 0) setBowlType(null);
-        return next < 0 ? 0 : next;
-      });
-      setWaterPercent((prev) => {
-        if (prev <= 0) return 0;
-        const next = prev - 10;
-        return next < 0 ? 0 : next;
-      });
-    }, 5000);
-
-    return () => clearInterval(timer);
-  }, []);
-
+  const [selectedBed, setSelectedBed] = useState(null);
+  const [activeButton, setActiveButton] = useState(null);
+  const [ballSpeed, setBallSpeed] = useState("stop");
   return (
     <section
       style={{
@@ -98,13 +68,23 @@ export default function PlayScreen() {
         }}
       >
         <CatEmotion />
-        <FoodBowl bowlType={bowlType} percent={foodPercent} />
-        <CatDisplay />
-        <WaterBottle percent={waterPercent} />
+        <FoodBowl />
+        <div style={{ position: "absolute", inset: 0, zIndex: 10 }}>
+          <CatDisplay selectedBed={selectedBed}/>
+        </div>
+        <div style={{ position: "absolute", inset: 0, zIndex: 20 }}>
+          <PlayBall ballSpeed={ballSpeed}/>
+        </div>
+        <WaterBottle />
       </div>
 
-      <BottomActionBar />
-      <FeedSystem onSelect={handleFeedSelect} />
+      <BottomActionBar 
+        activeButton={activeButton}
+        setActiveButton={setActiveButton}
+        setSelectedBed={setSelectedBed}
+        ballSpeed={ballSpeed}
+        setBallSpeed={setBallSpeed}
+      />
     </section>
   );
 }

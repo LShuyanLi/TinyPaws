@@ -1,7 +1,19 @@
-// FoodBowl.jsx: Displays the bowl and shows dry or wet food when the bowl is clicked.
-export default function FoodBowl({ bowlType, percent = 0 }) {
-  const isBowlFilled = (bowlType === "dry" || bowlType === "wet") && percent > 0;
-  const fillImage = bowlType === "wet" ? "/wetfood.svg" : "/dryfood.svg";
+// FoodBowl.jsx: Displays the bowl and shows dry or wet food when the bowl is filled.
+
+import { useFood } from "@/components/Jessica/FoodProvider";
+
+export default function FoodBowl() {
+  const { foodType } = useFood();
+  const isBowlFilled = foodType === "dry" || foodType === "wet";
+
+  let foodImage = "";
+
+  if (foodType === "dry") {
+    foodImage = "/dryfood-full.svg";
+  } else if (foodType === "wet") {
+    foodImage = "/wetfood-full.svg";
+  }
+
   return (
     <div
       style={{
@@ -10,37 +22,50 @@ export default function FoodBowl({ bowlType, percent = 0 }) {
         bottom: "0",
         zIndex: 10,
         textAlign: "center",
+        width: "12vw",
+        minWidth: "120px",
+        maxWidth: "190px",
       }}
     >
+      {/* bowl base */}
       <img
         src="/bowl.svg"
         style={{
-          width: "12vw",
-          minWidth: "120px",
-          maxWidth: "190px",
+          width: "100%",
           height: "auto",
           display: "block",
+          position: "relative",
+          zIndex: 1,
         }}
       />
+
+      {/* food image on top of bowl */}
       {isBowlFilled && (
         <img
-          src={fillImage}
+          src={foodImage}
           style={{
             position: "absolute",
             left: "50%",
-            bottom: "22px",
+            bottom: "30px",
             transform: "translateX(-50%)",
-            width: "50%",
+            width: "82%",
             height: "auto",
+            zIndex: 2,
+            pointerEvents: "none",
           }}
         />
       )}
       <p
         style={{
-          margin: "-1.2rem 0 0",
+          position: "absolute",
+          left: "50%",
+          bottom: "6px",
+          transform: "translateX(-50%)",
+          margin: 0,
           color: "#111111",
           fontSize: "1rem",
           fontWeight: "700",
+          zIndex: 3,
         }}
       >
         {isBowlFilled ? percent + "%" : "0%"}

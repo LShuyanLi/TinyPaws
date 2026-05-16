@@ -1,6 +1,19 @@
-// WaterBottle.jsx: Displays the water bottle and shows water level when the bottle is clicked.
-export default function WaterBottle({ percent = 0 }) {
-  const isBottleFilled = percent > 0;
+// WaterBottle.jsx: Displays the water bottle and shows water level when water is selected.
+
+import { useWater } from "@/components/Jessica/WaterProvider";
+
+export default function WaterBottle() {
+  const { waterLevel } = useWater();
+  let waterImage = null;
+
+  if (waterLevel === 25) {
+    waterImage = "/25.svg";
+  } else if (waterLevel === 50) {
+    waterImage = "/50.svg";
+  } else if (waterLevel === 100) {
+    waterImage = "/100.svg";
+  }
+
   return (
     <div
       style={{
@@ -21,28 +34,35 @@ export default function WaterBottle({ percent = 0 }) {
           display: "block",
         }}
       />
-      {isBottleFilled && (
+
+      {waterImage && (
         <img
-          src="/water.svg"
+          src={waterImage}
           style={{
             position: "absolute",
             left: "50%",
-            bottom: "22px",
+            bottom: "0",
             transform: "translateX(-50%)",
-            width: "44%",
+            width: "100%",
             height: "auto",
+            pointerEvents: "none",
           }}
         />
       )}
       <p
         style={{
-          margin: "-1.2rem 0 0",
+          position: "absolute",
+          left: "50%",
+          bottom: "18px",
+          transform: "translateX(-50%)",
+          margin: 0,
           color: "#111111",
           fontSize: "1rem",
           fontWeight: "700",
+          zIndex: 20,
         }}
       >
-        {isBottleFilled ? percent + "%" : "0%"}
+        {waterLevel}%
       </p>
     </div>
   );

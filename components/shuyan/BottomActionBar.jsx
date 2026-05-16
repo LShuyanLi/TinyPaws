@@ -2,11 +2,28 @@
 
 // BottomActionBar.jsx: Displays the bottom interaction buttons and shows each hover bubble.
 
-import { useState } from "react";
+import NameTag from "@/components/Elina/NameTag";
+import { useFood } from "@/components/Jessica/FoodProvider";
+import { usePlay } from "@/components/Jessica/PlayProvider";
+import { useWater } from "@/components/Jessica/WaterProvider";
+import { useSleep } from "@/components/Jessica/SleepProvider";
+import { useBrush } from "@/components/Jessica/BrushProvider";
 
-export default function BottomActionBar() {
-  const [activeButton, setActiveButton] = useState(null);
-  const [isFeedOpen, setIsFeedOpen] = useState(false);
+export default function BottomActionBar({
+  activeButton,
+  setActiveButton,
+  name,
+  setName,
+  setSelectedBed
+}) {
+  // Get context hooks for activities
+  const { selectWetFood, selectDryFood, resetFood } = useFood();
+  const { playBall, playFeather, petCat, stopActivity, ballSpeed  } = usePlay();
+  const { toggleWatering } = useWater();
+  const { toggleSleeping } = useSleep();
+  const { toggleBrushing } = useBrush();
+  
+  
 
   return (
     <div
@@ -27,19 +44,37 @@ export default function BottomActionBar() {
     >
       {/* Name button - Elina can connect this to NameTag modal later */}
       <div style={{ position: "relative" }}>
-        <button style={buttonStyle}>Give a Name Tag</button>
+        {activeButton === "name" && (
+          <NameTag
+            name={name}
+            setName={setName}
+            setActiveButton={setActiveButton}
+          />
+        )}
+
+        <button
+          style={buttonStyle}
+          onClick={() =>
+            setActiveButton(activeButton === "name" ? null : "name")
+          }
+        >
+          Give a Name Tag
+        </button>
       </div>
 
       {/* Feed button - Jinwon */}
       <div style={{ position: "relative" }}>
-        {isFeedOpen && (
+        {activeButton === "feed" && (
           <div style={bubbleStyle}>
             <img src="/bubble-3.svg" style={bubbleBackgroundStyle} />
 
-            {/* dry food option - Jinwon can add onClick here */}
+            {/* dry food option - Jinwon */}
             <img
               src="/dryfood.svg"
-              onClick={() => setIsFeedOpen(false)}
+              onClick={() => {
+                selectDryFood();
+                setActiveButton(null);
+              }}
               style={{
                 position: "absolute",
                 top: "8%",
@@ -50,26 +85,31 @@ export default function BottomActionBar() {
                 cursor: "pointer",
               }}
             />
+            {/* wet food option - Jinwon */}
+              <img
+                src="/wetfood.svg"
+                onClick={() => {
+                  selectWetFood();
+                  setActiveButton(null);
+                }}
+                style={{
+                  position: "absolute",
+                  top: "34%",
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  width: "45%",
+                  height: "auto",
+                  cursor: "pointer",
+                }}
+              />
 
-            {/* wet food option - Jinwon can add onClick here */}
-            <img
-              src="/wetfood.svg"
-              onClick={() => setIsFeedOpen(false)}
-              style={{
-                position: "absolute",
-                top: "34%",
-                left: "50%",
-                transform: "translateX(-50%)",
-                width: "45%",
-                height: "auto",
-                cursor: "pointer",
-              }}
-            />
-
-            {/* water option - Jinwon can add onClick here */}
+            {/* water option - Jinwon */}
             <img
               src="/water.svg"
-              onClick={() => setIsFeedOpen(false)}
+              onClick={() => {
+                toggleWatering();
+                setActiveButton(null);
+              }}
               style={{
                 position: "absolute",
                 top: "60%",
@@ -83,24 +123,32 @@ export default function BottomActionBar() {
           </div>
         )}
 
-        <button style={buttonStyle} onClick={() => setIsFeedOpen((prev) => !prev)}>
+        <button
+          style={buttonStyle}
+          onClick={() =>
+            setActiveButton(activeButton === "feed" ? null : "feed")
+          }
+        >
           Fill the Bowl
         </button>
       </div>
 
       {/* Play button - Jonah handles ball/feather, Elina handles hand */}
-      <div
-        onMouseEnter={() => setActiveButton("play")}
-        onMouseLeave={() => setActiveButton(null)}
-        style={{ position: "relative" }}
-      >
+      <div style={{ position: "relative" }}>
         {activeButton === "play" && (
           <div style={bubbleStyle}>
             <img src="/bubble-3.svg" style={bubbleBackgroundStyle} />
 
-            {/* ball option - Jonah can add onClick here */}
+            {/* ball option - Jonah */}
             <img
               src="/ball.svg"
+                onClick={() => {
+                // Cycle through ball speeds: stop -> slow -> fast -> stop
+                if (ballSpeed === "stop") playBall("slow");
+                else if (ballSpeed === "slow") playBall("fast");
+                else stopActivity();
+                setActiveButton(null);
+              }}
               style={{
                 position: "absolute",
                 top: "8%",
@@ -109,12 +157,17 @@ export default function BottomActionBar() {
                 width: "42%",
                 height: "auto",
                 cursor: "pointer",
+                opacity: ballSpeed === "stop" ? 0.5 : 1,
               }}
             />
 
-            {/* feather option - Jonah can add onClick here */}
+            {/* feather option - Jonah */}
             <img
               src="/feather.svg"
+              onClick={() => {
+                playFeather();
+                setActiveButton(null);
+              }}
               style={{
                 position: "absolute",
                 top: "30%",
@@ -129,6 +182,10 @@ export default function BottomActionBar() {
             {/* hand option - Elina can add onClick here */}
             <img
               src="/hand.svg"
+              onClick={() => {
+                petCat();
+                setActiveButton(null);
+              }}
               style={{
                 position: "absolute",
                 top: "55%",
@@ -142,15 +199,18 @@ export default function BottomActionBar() {
           </div>
         )}
 
-        <button style={buttonStyle}>Play Together</button>
+        <button
+          style={buttonStyle}
+          onClick={() =>
+            setActiveButton(activeButton === "play" ? null : "play")
+          }
+        >
+          Play Together
+        </button>
       </div>
 
       {/* Brush button - Elina */}
-      <div
-        onMouseEnter={() => setActiveButton("brush")}
-        onMouseLeave={() => setActiveButton(null)}
-        style={{ position: "relative" }}
-      >
+      <div style={{ position: "relative" }}>
         {activeButton === "brush" && (
           <div style={bubbleStyle}>
             <img src="/bubble-1.svg" style={bubbleBackgroundStyle} />
@@ -158,6 +218,10 @@ export default function BottomActionBar() {
             {/* brush option - Elina can add onClick here */}
             <img
               src="/brush.svg"
+              onClick={() => {
+                toggleBrushing();
+                setActiveButton(null);
+              }}
               style={{
                 position: "absolute",
                 top: "22%",
@@ -171,22 +235,28 @@ export default function BottomActionBar() {
           </div>
         )}
 
-        <button style={buttonStyle}>Brush the Fur</button>
+        <button
+          style={buttonStyle}
+          onClick={() =>
+            setActiveButton(activeButton === "brush" ? null : "brush")
+          }
+        >
+          Brush the Fur
+        </button>
       </div>
 
       {/* Bed button - Jonah */}
-      <div
-        onMouseEnter={() => setActiveButton("bed")}
-        onMouseLeave={() => setActiveButton(null)}
-        style={{ position: "relative" }}
-      >
+      <div style={{ position: "relative" }}>
         {activeButton === "bed" && (
           <div style={bubbleStyle}>
             <img src="/bubble-2.svg" style={bubbleBackgroundStyle} />
 
-            {/* yellow bed option - Jonah can add onClick here */}
+            {/* yellow bed option - Jonah */}
             <img
               src="/bed-1.svg"
+              onClick={() => {
+                setSelectedBed((prev) => (prev === "yellow" ? null : "yellow"));
+              }}
               style={{
                 position: "absolute",
                 top: "12%",
@@ -198,9 +268,12 @@ export default function BottomActionBar() {
               }}
             />
 
-            {/* green bed option - Jonah can add onClick here */}
+            {/* green bed option - Jonah */}
             <img
               src="/bed-2.png"
+              onClick={() => {
+                setSelectedBed((prev) => (prev === "green" ? null : "green"));
+              }}
               style={{
                 position: "absolute",
                 top: "48%",
@@ -214,7 +287,14 @@ export default function BottomActionBar() {
           </div>
         )}
 
-        <button style={buttonStyle}>Set Up Bed</button>
+        <button
+          style={buttonStyle}
+          onClick={() =>
+            setActiveButton(activeButton === "bed" ? null : "bed")
+          }
+        >
+          Set Up Bed
+        </button>
       </div>
     </div>
   );

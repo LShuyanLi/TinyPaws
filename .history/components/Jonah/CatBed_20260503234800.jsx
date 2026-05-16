@@ -1,0 +1,1 @@
+// Displays the selected bed under the cat and handles bed color changes.
