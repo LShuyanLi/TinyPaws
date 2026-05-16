@@ -1,26 +1,48 @@
-import { useState, createContext, useContext } from "react";
+import { useEffect, useState, createContext, useContext } from "react";
 
 const FoodContext = createContext(null);
 
 function FoodProvider({ children }) {
-  const [foodType, setFoodType] = useState("none"); // "wet", "dry", or "none"
+  const [foodType, setFoodType] = useState("none");
+  const [foodLevel, setFoodLevel] = useState(0);
 
-  const toggleFoodType = (type) => {
-    setFoodType(prev => prev === type ? "none" : type);
-  };
+  useEffect(() => {
+    if (foodType === "none") return;
+
+    const timer = setInterval(() => {
+      setFoodLevel((prev) => {
+        const next = prev - 10;
+        if (next <= 0) {
+          setFoodType("none");
+          return 0;
+        }
+        return next;
+      });
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, [foodType]);
 
   const selectWetFood = () => {
-    toggleFoodType("wet");
+    setFoodType("wet");
+    setFoodLevel(100);
   };
-  const selectDryFood = () => toggleFoodType("dry");
-  const resetFood = () => setFoodType("none");
+
+  const selectDryFood = () => {
+    setFoodType("dry");
+    setFoodLevel(100);
+  };
+
+  const resetFood = () => {
+    setFoodType("none");
+    setFoodLevel(0);
+  };
 
   return (
     <FoodContext.Provider
       value={{
         foodType,
-        setFoodType,
-        toggleFoodType,
+        foodLevel,
         selectWetFood,
         selectDryFood,
         resetFood,
