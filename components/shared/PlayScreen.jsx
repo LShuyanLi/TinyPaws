@@ -2,7 +2,7 @@
 
 // PlayScreen.jsx: Builds the main cat play screen with the background, cat area, feeding area, tools, bed, and bottom buttons.
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import BackButton from "@/components/shuyan/BackButton";
 import BottomActionBar from "@/components/shuyan/BottomActionBar";
@@ -14,17 +14,35 @@ import CatEmotion from "@/components/Jessica/CatEmotion";
 
 export default function PlayScreen() {
   const [bowlType, setBowlType] = useState(null);
-  const [hasWater, setHasWater] = useState(false);
+  const [foodPercent, setFoodPercent] = useState(0);
+  const [waterPercent, setWaterPercent] = useState(0);
 
   function handleFeedSelect(type) {
     if (type === "water") {
-      setHasWater(true);
-      setTimeout(() => setHasWater(false), 5000);
+      setWaterPercent(100);
     } else {
       setBowlType(type);
-      setTimeout(() => setBowlType(null), 5000);
+      setFoodPercent(100);
     }
   }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setFoodPercent((prev) => {
+        if (prev <= 0) return 0;
+        const next = prev - 10;
+        if (next <= 0) setBowlType(null);
+        return next < 0 ? 0 : next;
+      });
+      setWaterPercent((prev) => {
+        if (prev <= 0) return 0;
+        const next = prev - 10;
+        return next < 0 ? 0 : next;
+      });
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <section
@@ -80,9 +98,9 @@ export default function PlayScreen() {
         }}
       >
         <CatEmotion />
-        <FoodBowl bowlType={bowlType} />
+        <FoodBowl bowlType={bowlType} percent={foodPercent} />
         <CatDisplay />
-        <WaterBottle hasWater={hasWater} />
+        <WaterBottle percent={waterPercent} />
       </div>
 
       <BottomActionBar />

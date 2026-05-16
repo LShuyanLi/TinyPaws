@@ -1,8 +1,6 @@
 // WaterBottle.jsx: Displays the water bottle and shows water level when the bottle is clicked.
-
-export default function WaterBottle({ hasWater }) {
-  const isBottleFilled = hasWater;
-
+export default function WaterBottle({ percent = 0 }) {
+  const isBottleFilled = percent > 0;
   return (
     <div
       style={{
@@ -23,7 +21,6 @@ export default function WaterBottle({ hasWater }) {
           display: "block",
         }}
       />
-
       {isBottleFilled && (
         <img
           src="/water.svg"
@@ -37,7 +34,6 @@ export default function WaterBottle({ hasWater }) {
           }}
         />
       )}
-
       <p
         style={{
           margin: "-1.2rem 0 0",
@@ -46,7 +42,7 @@ export default function WaterBottle({ hasWater }) {
           fontWeight: "700",
         }}
       >
-        {isBottleFilled ? "100%" : "0%"}
+        {isBottleFilled ? percent + "%" : "0%"}
       </p>
     </div>
   );

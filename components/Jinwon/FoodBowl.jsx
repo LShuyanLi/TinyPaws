@@ -1,9 +1,7 @@
 // FoodBowl.jsx: Displays the bowl and shows dry or wet food when the bowl is clicked.
-
-export default function FoodBowl({ bowlType }) {
-  const isBowlFilled = bowlType === "dry" || bowlType === "wet";
+export default function FoodBowl({ bowlType, percent = 0 }) {
+  const isBowlFilled = (bowlType === "dry" || bowlType === "wet") && percent > 0;
   const fillImage = bowlType === "wet" ? "/wetfood.svg" : "/dryfood.svg";
-
   return (
     <div
       style={{
@@ -24,7 +22,6 @@ export default function FoodBowl({ bowlType }) {
           display: "block",
         }}
       />
-
       {isBowlFilled && (
         <img
           src={fillImage}
@@ -38,7 +35,6 @@ export default function FoodBowl({ bowlType }) {
           }}
         />
       )}
-
       <p
         style={{
           margin: "-1.2rem 0 0",
@@ -47,7 +43,7 @@ export default function FoodBowl({ bowlType }) {
           fontWeight: "700",
         }}
       >
-        {isBowlFilled ? "100%" : "0%"}
+        {isBowlFilled ? percent + "%" : "0%"}
       </p>
     </div>
   );
