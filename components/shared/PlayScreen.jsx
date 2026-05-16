@@ -12,20 +12,18 @@ import WaterBottle from "@/components/Jinwon/WaterBottle";
 import FeedSystem from "@/components/Jinwon/FeedSystem";
 import CatEmotion from "@/components/Jessica/CatEmotion";
 
-export default function PlayScreen() {
-  const [feedState, setFeedState] = useState({
-    bowlType: null,
-    hasWater: false,
-  });
+  const [bowlType, setBowlType] = useState(null);
+  const [hasWater, setHasWater] = useState(false);
 
-  const handleFeedSelect = (type) => {
+  function handleFeedSelect(type) {
     if (type === "water") {
-      setFeedState((prev) => ({ ...prev, hasWater: true }));
-      return;
+      setHasWater(true);
+      setTimeout(() => setHasWater(false), 5000);
+    } else {
+      setBowlType(type);
+      setTimeout(() => setBowlType(null), 5000);
     }
-
-    setFeedState((prev) => ({ ...prev, bowlType: type }));
-  };
+  }
 
   return (
     <section
@@ -81,13 +79,12 @@ export default function PlayScreen() {
         }}
       >
         <CatEmotion />
-        <FoodBowl bowlType={feedState.bowlType} />
+        <FoodBowl bowlType={bowlType} />
         <CatDisplay />
-        <WaterBottle hasWater={feedState.hasWater} />
+        <WaterBottle hasWater={hasWater} />
       </div>
 
       <BottomActionBar />
       <FeedSystem onSelect={handleFeedSelect} />
     </section>
   );
-}
