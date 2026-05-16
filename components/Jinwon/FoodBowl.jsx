@@ -68,7 +68,7 @@ export default function FoodBowl() {
           zIndex: 3,
         }}
       >
-        {isBowlFilled ? percent + "%" : "0%"}
+        {isBowlFilled ? "100%" : "0%"}
       </p>
     </div>
   );
